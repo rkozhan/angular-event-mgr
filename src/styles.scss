@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-display: swap;
+    font-family: 'title';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../public/assets/fonts/anta-v1-latin-regular.woff2') format('woff2'); 
+}
+
+:root {
+    --col-dark : black;
+    --col-light: white;
+    --col-primary: pink;
+    font-size: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html, body {
+    height: 100dvh;
+    width: 100dvw;
+
+    background: var(--col-dark);
+    color: var(--col-light);
+}
+
+body {
+    margin: 0;
+}
+
+h1 {
+    font-family: title;
+}
+
+
+form {
+    margin: auto;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.em-control-label {
+    .em-input {
+        display: block;
+        margin-top: .5rem;
+        padding: .6rem;
+    }
+}

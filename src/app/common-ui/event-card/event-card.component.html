@@ -1,0 +1,17 @@
+@if (event) {
+    <div class="event-card">
+        <div class="event-card__image">
+            @if (event.imgUrls && event.imgUrls[0]) {
+                <img
+                [src]="event.imgUrls[0]"
+                [alt]="event.title"
+                class="event-card__avatar">
+            } @else {
+                {{event.title[0]}}
+            }
+        </div>
+        <div class="event-card__title">{{event.title}}</div>
+    </div>
+} @else {
+    elsesdcd
+}
