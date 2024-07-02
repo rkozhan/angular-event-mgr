@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Profile } from '../../data/interfaces/profile.interface';
+import { UserInterface } from '../../data/interfaces/user.interface';
 import { ImgUrlPipe } from '../../data/helpers/pipes/img-url.pipe';
 
 @Component({
@@ -10,5 +10,5 @@ import { ImgUrlPipe } from '../../data/helpers/pipes/img-url.pipe';
   styleUrl: './profile-card.component.scss'
 })
 export class ProfileCardComponent {
-  @Input() profile!: Profile
+  @Input() profile!: UserInterface
 }

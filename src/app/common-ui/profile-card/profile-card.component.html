@@ -1,17 +1,13 @@
 @if (profile) {
     <div class="profile-card">
         <div class="profile-card__avatar">
-            <img
+            <!--img
                 [src]="profile.avatarUrl | imgUrl"
                 [alt]="profile.firstName"
-                class="profile-card__avatar">
-            {{profile.firstName[0]}}
+                class="profile-card__avatar"-->
+            {{profile.username[0]}}
         </div>
-        <div class="profile-card__name">{{profile.firstName}}</div>
-        @for (skill of profile.stack; track skill ) {
-            <span>{{skill}}</span>
-        }
+        <div class="profile-card__name">{{profile.username}}</div>
+        
     </div>
-} @else {
-    sfsdvdfv
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { TokenResponse } from './auth.interface';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,17 @@ import { TokenResponse } from './auth.interface';
 export class AuthService {
 
   http = inject(HttpClient)
+  cookieService = inject(CookieService)
+
   baseApiUrl = 'http://localhost:5454/auth/'
 
   token: string | null = null
  // refreshToken: string | null = null  //TODO in auth.interface
 
  get isAuth() {
+  if (!this.token) {
+    this.token = this.cookieService.get('token')
+  }
   return !!this.token
  }
 
@@ -31,6 +37,8 @@ export class AuthService {
         this.token = val.jwt
         //this.refreshToken = val.refresh
 
+        this.cookieService.set('token', this.token)
+        //this.cookieService.set('refreshToken', this.refreshToken)
         console.log(val.message)
       })
     )
