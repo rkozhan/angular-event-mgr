@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 
 import { ProfileCardComponent } from '../../common-ui/profile-card/profile-card.component';
-import { ProfileService } from '../../data/services/user.service';
+import { UserService } from '../../data/services/user.service';
 import { UserInterface } from '../../data/interfaces/user.interface';
 
 @Component({
@@ -12,7 +12,7 @@ import { UserInterface } from '../../data/interfaces/user.interface';
   styleUrl: './users-page.component.scss'
 })
 export class UsersPageComponent {
-  profileService = inject(ProfileService)
+  profileService = inject(UserService)
   profiles: UserInterface[] = []
 
   constructor() {

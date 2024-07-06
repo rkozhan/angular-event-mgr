@@ -1,5 +1,23 @@
 :host {
     flex: 1 1 auto;
     display: flex;
+    height: 100%;
 }
 
+.password-input {
+    position: relative;
+
+    .password-eye-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: none;
+        border: none;
+        color: black;
+        cursor: pointer;
+    }
+
+    .password-eye-btn.active {
+        color: var(--col-primary);
+    }
+}

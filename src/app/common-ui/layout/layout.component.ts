@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { UserService } from '../../data/services/user.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,5 +11,13 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
+  userService = inject(UserService)
 
+  ngOnInit() {
+    console.log('ngOnInit');
+    this.userService.getMe().subscribe(val => {
+      console.log(val);
+      
+    })
+  }
 }
