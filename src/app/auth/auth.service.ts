@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { catchError, tap, throwError } from 'rxjs';
 import { TokenResponse } from './auth.interface';
 import { CookieService } from 'ngx-cookie-service';
+import { jwtDecode } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   http = inject(HttpClient)
   cookieService = inject(CookieService)
   router = inject(Router)
@@ -18,10 +18,14 @@ export class AuthService {
 
   token: string | null = null
  // refreshToken: string | null = null  //TODO in auth.interface
+  roles: string[] = [];
 
  get isAuth() {
   if (!this.token) {
     this.token = this.cookieService.get('token')
+    this.roles = this.cookieService.get('roles').split(',')
+    console.log(this.roles);
+    
     //this.refreshToken = this.cookieService.get('refreshToken')
   }
   return !!this.token
@@ -59,8 +63,10 @@ export class AuthService {
   logout() {
     this.cookieService.delete('token')
     this.cookieService.delete('refreshToken')
+    this.cookieService.delete('roles')
     this.token = null
     //this.refreshToken = null
+    this.roles = []
     this.router.navigate(['/login'])
   }
 
@@ -68,8 +74,16 @@ export class AuthService {
     this.token = resp.jwt
     //this.refreshToken = resp.refresh
 
+    this.decode(this.token);
+
     this.cookieService.set('token', this.token)
     //this.cookieService.set('refreshToken', this.refreshToken)
     console.log(resp.message)
+  }
+
+  decode(token: string): any {
+    const decoded:any = jwtDecode(token);
+    this.roles = decoded.roles
+    this.cookieService.set('roles', decoded.roles)
   }
 }
