@@ -1,7 +1,9 @@
 :host {
-    flex: 1 1 auto;
-    display: flex;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .password-input {

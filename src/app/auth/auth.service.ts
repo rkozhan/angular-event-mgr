@@ -24,12 +24,13 @@ export class AuthService {
   if (!this.token) {
     this.token = this.cookieService.get('token')
     this.roles = this.cookieService.get('roles').split(',')
-    console.log(this.roles);
     
     //this.refreshToken = this.cookieService.get('refreshToken')
   }
   return !!this.token
  }
+
+ 
 
   login(payload: {email: string, password: string}) {
     //const fd = new FormData();
@@ -43,6 +44,29 @@ export class AuthService {
     ).pipe(
       tap(value => this.saveTokens(value))
     )
+  }
+
+  signup(payload: { username: string, password: string, email: string, isEditor: boolean }) {
+    const roles = payload.isEditor ? ['ROLE_EDITOR'] : ['ROLE_USER'];
+
+    const signupPayload = {
+      username: payload.username,
+      password: payload.password,
+      email: payload.email,
+      roles: roles
+    };
+
+    return this.http.post<any>(`${this.baseApiUrl}signup`, signupPayload).pipe(
+      tap(response => {
+        // Handle successful signup response if needed
+        console.log('Signup successful', response);
+      }),
+      catchError(error => {
+        // Handle error in signup process
+        console.error('Error in signup', error);
+        return throwError(error);
+      })
+    );
   }
 
   refreshAuthToken() {

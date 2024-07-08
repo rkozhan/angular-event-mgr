@@ -7,6 +7,5 @@ export interface EventInterface {
     location: string,
     category: string,
     createdBy: string,
-    //imgUrls: string[] | null
     imgUrls: string[]
 }

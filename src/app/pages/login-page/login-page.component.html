@@ -41,7 +41,24 @@
         </div>
     </label>
 
-
-
     <button type="submit">Login</button>
+
+    <div class="form-result">
+        @if (loading()) {
+            <app-spinner></app-spinner>
+        } @else {
+            <app-error [errorMessage]="errorMessage()"></app-error>
+        }
+
+    </div>
+
+
+
 </form>
+
+<a [routerLink]="['/signup']">Create account</a>
+
+
+
+
+

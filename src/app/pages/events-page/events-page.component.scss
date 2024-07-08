@@ -1,0 +1,12 @@
+.event__list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+
+   
+}
+
+.event__list:has(.event-card.active) {
+    pointer-events: none;
+}

@@ -1,0 +1,55 @@
+<form
+  class="signup-form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <h1>Signup:</h1>
+
+  <label class="em-control-label">
+    Username:
+    <input formControlName="username" class="em-input" type="text" placeholder="Username" />
+  </label>
+
+  <label class="em-control-label">
+    Email:
+    <input formControlName="email" class="em-input" type="email" placeholder="Email" />
+  </label>
+
+  <label class="em-control-label">
+    Password:
+    <input formControlName="password" class="em-input" type="password" placeholder="Password" />
+  </label>
+
+  <label class="em-control-label">
+    Confirm Password:
+    <input
+        type="password"
+        placeholder="Confirm Password"
+        class="em-input"
+        [class.pass-error]="!isPasswordMatches()"
+        (blur)="isPasswordMatches.set(checkIfPasswordMatches())"
+        formControlName="confirmPassword"
+    />
+
+  </label>
+
+  <label class="em-control-label">
+    Select to add new Events:
+    <input formControlName="isEditor" type="checkbox" />
+  </label>
+
+  <button type="submit">Create Account</button>
+
+  <div class="form-result">
+    @if (loading()) {
+        <app-spinner></app-spinner>
+    } @else {
+        <app-error [errorMessage]="errorMessage()"></app-error>
+    }
+
+</div>
+
+  
+</form>
+
+<a [routerLink]="['/login']">Already have an account? Login</a>
