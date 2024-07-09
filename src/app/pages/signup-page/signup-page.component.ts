@@ -24,12 +24,12 @@ export class SignupPageComponent {
 
 
   checkIfPasswordMatches() {
-    return this.form.value.confirmPassword === this.form.value.password
+    return this.form.value.confirmPassword === this.form.value.newPassword
   }
 
   form = new FormGroup({
     username: new FormControl(null, Validators.required),
-    password: new FormControl(null, Validators.required),
+    newPassword: new FormControl(null, Validators.required),
     confirmPassword: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
     isEditor: new FormControl(false)
@@ -51,9 +51,9 @@ export class SignupPageComponent {
       this.errorMessage.set(null)
       this.isPasswordMatches.set(true)
       
-      const { username, email, password, isEditor } = this.form.value;
+      const { username, email, newPassword, isEditor } = this.form.value;
       //@ts-ignore
-      this.authService.signup({ username, email, password, isEditor })
+      this.authService.signup({ username, email, newPassword, isEditor })
         .subscribe({
           next: res => {
             this.loading.set(false);

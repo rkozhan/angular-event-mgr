@@ -21,7 +21,8 @@
         <h2 class="event-card__title">{{event.title}}</h2>
         <div class="event-card__location">{{event.location}}</div>
         <div class="event-card__time">{{event.time}}</div>
-        <a [routerLink]="['/events', event.id]">link</a>
+        
+        <a [routerLink]="['/events', event.id]">Show more</a>
     </div>
     
     <div class="event-card__hidden">

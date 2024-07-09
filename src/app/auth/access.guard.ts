@@ -7,9 +7,6 @@ export const canActivateAuth = () => {
 
     console.log("canActivate: isLoggedIn: " +isLoggedIn);
 
-
-    
-
     if (isLoggedIn) {
         return true
     }
@@ -18,10 +15,20 @@ export const canActivateAuth = () => {
 }
 
 export const canActivateEditorView = () => {
-    const roles = inject(AuthService).roles
-    return roles.includes("ROLE_EDITOR")
+    if (inject(AuthService).isEditor) return true
 
-    //if (roles.includes("ROLE_EDITOR")) return true
+    return inject(Router).createUrlTree(['/403'])
+}
 
-    //return inject(Router).createUrlTree(['/403'])
+export const canActivateAdminView = () => {
+    if (inject(AuthService).isAdmin) return true
+
+    return inject(Router).createUrlTree(['/403'])
+}
+
+export const canActivateLogin = () => {
+
+    if(!inject(AuthService).isAuth) return true
+    
+    return inject(Router).createUrlTree([''])
 }

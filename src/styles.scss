@@ -7,8 +7,9 @@
 }
 
 :root {
-    --col-dark : black;
-    --col-light: white;
+    --col-black: black;
+    --col-dark : #721c24;
+    --col-light: #f8d7da;
     --col-primary: darkred;
     --col-error: red;
     font-size: 10px;
@@ -18,6 +19,8 @@
 html, body {
     height: 100dvh;
     width: 100dvw;
+    background-color: var(--col-light);
+    color: var(--col-black);
 }
 
 body {
@@ -26,6 +29,8 @@ body {
 
 h1 {
     font-family: title;
+    color: var(--col-dark);
+    font-size: 3rem;
 }
 
 ul {

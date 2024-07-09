@@ -1,1 +1,11 @@
 HEADER
+
+<nav>
+    <button *ngIf="authService.isAuth" (click)="logout()">Logout</button>
+    <button *ngIf="!authService.isAuth" (click)="logout()">Login</button>
+
+    <button *ngIf="authService.isEditor" (click)="logout()">I am Edtor</button>
+    <button *ngIf="authService.isAdmin" (click)="logout()">I am Admin</button>
+
+    <a href="/users" *ngIf="authService.isEditor">Users</a>
+</nav>

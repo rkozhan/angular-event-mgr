@@ -18,19 +18,35 @@ export class AuthService {
 
   token: string | null = null
  // refreshToken: string | null = null  //TODO in auth.interface
+
   roles: string[] = [];
 
  get isAuth() {
   if (!this.token) {
     this.token = this.cookieService.get('token')
-    this.roles = this.cookieService.get('roles').split(',')
-    
     //this.refreshToken = this.cookieService.get('refreshToken')
   }
+
+  console.log("isAuth" + !!this.token);
+  
   return !!this.token
  }
 
- 
+  private get userRoles() {
+    if (!this.roles.length) {
+      if (!this.token) this.isAuth
+      this.saveRoles()
+    }
+    return this.roles
+  }
+
+  get isEditor() {
+      return this.userRoles.includes("ROLE_EDITOR")
+  }
+
+  get isAdmin() {
+    return this.userRoles.includes("ROLE_ADMIN")
+  }
 
   login(payload: {email: string, password: string}) {
     //const fd = new FormData();
@@ -42,21 +58,27 @@ export class AuthService {
       //fd // if use form Data instead "payload"
       payload
     ).pipe(
-      tap(value => this.saveTokens(value))
+      tap(value => {
+        this.saveTokens(value)
+        this.saveRoles
+      })
     )
   }
 
-  signup(payload: { username: string, password: string, email: string, isEditor: boolean }) {
+  signup(payload: { username: string, newPassword: string, email: string, isEditor: boolean }) {
     const roles = payload.isEditor ? ['ROLE_EDITOR'] : ['ROLE_USER'];
 
     const signupPayload = {
       username: payload.username,
-      password: payload.password,
+      password: payload.newPassword,
       email: payload.email,
       roles: roles
     };
 
-    return this.http.post<any>(`${this.baseApiUrl}signup`, signupPayload).pipe(
+    return this.http.post<any>(
+      `${this.baseApiUrl}signup`,
+      signupPayload
+      ).pipe(
       tap(response => {
         // Handle successful signup response if needed
         console.log('Signup successful', response);
@@ -97,17 +119,15 @@ export class AuthService {
   saveTokens (resp: TokenResponse) {
     this.token = resp.jwt
     //this.refreshToken = resp.refresh
-
-    this.decode(this.token);
-
     this.cookieService.set('token', this.token)
     //this.cookieService.set('refreshToken', this.refreshToken)
     console.log(resp.message)
   }
-
-  decode(token: string): any {
-    const decoded:any = jwtDecode(token);
-    this.roles = decoded.roles
-    this.cookieService.set('roles', decoded.roles)
+  
+  saveRoles () {
+    if (this.token) {
+      const decoded:any = jwtDecode(this.token)
+      this.roles = decoded.roles
+    }
   }
 }

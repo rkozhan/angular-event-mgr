@@ -12,12 +12,12 @@
 
   <label class="em-control-label">
     Email:
-    <input formControlName="email" class="em-input" type="email" placeholder="Email" />
+    <input autocomplete="" formControlName="email" class="em-input" type="email" placeholder="Email" />
   </label>
 
   <label class="em-control-label">
     Password:
-    <input formControlName="password" class="em-input" type="password" placeholder="Password" />
+    <input formControlName="newPassword" class="em-input" type="password" placeholder="Password" />
   </label>
 
   <label class="em-control-label">
@@ -34,8 +34,8 @@
   </label>
 
   <label class="em-control-label">
-    Select to add new Events:
     <input formControlName="isEditor" type="checkbox" />
+    <span>Register as an Editor</span>
   </label>
 
   <button type="submit">Create Account</button>
@@ -52,4 +52,5 @@
   
 </form>
 
-<a [routerLink]="['/login']">Already have an account? Login</a>
+<p>Are you already have an account?</p>
+<a [routerLink]="['/login']">Click here to login</a>

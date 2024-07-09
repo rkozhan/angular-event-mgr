@@ -14,11 +14,4 @@ import { UserService } from '../../data/services/user.service';
 export class LayoutComponent {
   userService = inject(UserService)
 
-  ngOnInit() {
-    console.log('ngOnInit');
-    this.userService.getMe().subscribe(val => {
-      console.log(val);
-      
-    })
-  }
 }
