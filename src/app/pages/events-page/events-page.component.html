@@ -4,7 +4,10 @@
     class="event__list"
 >
     @for (event of events; track event.id) {
-        <app-event-card [event]=event></app-event-card>
+        <app-event-card
+            [event]=event
+            [onDelete]="handleDelete.bind(this)"
+            ></app-event-card>
     }
 </ul>
 

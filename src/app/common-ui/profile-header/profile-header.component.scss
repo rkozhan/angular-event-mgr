@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+
+    .avatar {
+        width: 5em;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        overflow: hidden;
+    }    
+}

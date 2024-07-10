@@ -13,4 +13,8 @@ export class EventService {
     return this.http.get<EventInterface[]>(`${this.baseApiUrl}api/v1/events`)
   }
 
+  deleteEvent(id: string) {
+    return this.http.delete(`${this.baseApiUrl}api/v1/events/${id}`, { responseType: 'text' });
+  }
+
 }

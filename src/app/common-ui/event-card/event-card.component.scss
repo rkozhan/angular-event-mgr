@@ -1,12 +1,6 @@
 .event-card {
     box-shadow: 0 0 0 2px var(--col-primary);
     display: flex;
-    gap: 2rem;
-    cursor: pointer;
-
-    &:hover {
-        background-color: wheat;
-    }
 
     &__image {
         width: 30vmin;
@@ -24,12 +18,15 @@
         }
     }
 
+
+
     &__main {
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding-block: 1rem;
+        align-items: start;
+        padding: 1rem 1.5rem;
         overflow: hidden;
     }
 
@@ -37,26 +34,7 @@
         font-size: 2rem;
         font-family: title;
         text-wrap: nowrap;
-    }
 
-    &__location,
-    &__time {
-        position: relative; 
-        padding-left: 2.5rem;
-
-        &::before {
-            content: '';
-            display: inline-block;
-            width: 2rem;
-            height: 2rem;
-            background-size: contain;
-            background-repeat: no-repeat;
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            
-        }
     }
 
     &__location::before {
@@ -66,22 +44,39 @@
         background-image: url('/assets/svg/time.svg');
     }
 
-    &__hidden {
-        flex-basis: 100%;
-        display: none;
-    }
-}
-
-.event-card.active {
-    flex-wrap: wrap;
-    pointer-events: all;
-
-    .event-card__image {
-        flex-basis: 100%;
-        aspect-ratio: 3/2;
+    &__dash {
+        display: flex;
+        gap: 1.6rem;
+        align-self: flex-end;
     }
 
-    .event-card__hidden {
-        display: block;
+    &__members {
+        width: 3rem; 
+        aspect-ratio: 1/1;
+
     }
+    &__members_label {
+        display: inline-block;
+        height: 2rem;
+        line-height: 2rem;
+        aspect-ratio: 1/1;
+        position: absolute;
+        left: -.6rem;
+        top: -.6rem;
+        font-size: 1.3rem;
+        text-align: center;
+        border-radius: 50%;
+        background-color: lawngreen;
+
+    };
+
+    h2:hover,
+    .btn-icon:hover img {
+        color: var(--col-hover);
+    }
+
+    .btn-icon img {
+        fill: gold;
+    }
+
 }

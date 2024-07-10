@@ -1,11 +1,32 @@
-HEADER
 
-<nav>
-    <button *ngIf="authService.isAuth" (click)="logout()">Logout</button>
-    <button *ngIf="!authService.isAuth" (click)="logout()">Login</button>
+<header>
 
-    <button *ngIf="authService.isEditor" (click)="logout()">I am Edtor</button>
-    <button *ngIf="authService.isAdmin" (click)="logout()">I am Admin</button>
+    <div class="me">
+        @if (me(); as me) {
 
-    <a href="/users" *ngIf="authService.isEditor">Users</a>
-</nav>
+            <div class="avatar">
+                @if (me.avatarUrl) {
+                    <img [src]="me.avatarUrl | imgUrl" alt="">
+                } @else {
+                    <img src="/assets/imgs/avatar-placeholder.webp" alt="">
+                }
+
+            </div>
+            <div>
+                <div>Welcome, {{me.username}}</div>
+                <div>{{me.email}}</div>
+                <a [routerLink]="['settings']">Settings</a>
+            </div>
+        }
+    
+    </div>
+
+    <nav class="header-nav">
+        <a [routerLink]="['/users']" *ngIf="authService.isAdmin">Users for admin</a>
+        <a [routerLink]="['/users']" *ngIf="authService.isAuth">Users</a>
+        <a [routerLink]="['/']">Home</a>
+        
+        <button *ngIf="authService.isAuth" (click)="logout()">Logout</button>
+    </nav>
+    
+</header>

@@ -11,6 +11,7 @@
     --col-dark : #721c24;
     --col-light: #f8d7da;
     --col-primary: darkred;
+    --col-hover: green;
     --col-error: red;
     font-size: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -25,12 +26,17 @@ html, body {
 
 body {
     margin: 0;
+    font-size: 1.6rem;
 }
 
 h1 {
-    font-family: title;
-    color: var(--col-dark);
     font-size: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: title;
+    margin: 0;
+    color: var(--col-dark);
 }
 
 ul {
@@ -38,7 +44,6 @@ ul {
     padding: 0;
     margin: 0;
 }
-
 
 form {
     display: flex;
@@ -66,10 +71,65 @@ main {
     overflow-y: scroll;
 }
 
-header, footer {
-    background: darkred;
+button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
-h1, h2, h3 {
-    margin: 0;
+a {
+    text-decoration: none;
+
+    &._ibg img {
+        transition: transform 0.2s ease-in-out;
+        &:hover,
+        &:focus {
+            transform: scale(1.1);
+        } 
+    }
+}
+
+._ibg {
+    position: relative;
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        object-fit: cover;
+    }
+}
+
+._before-icon {
+    position: relative; 
+    padding-left: 2.5rem;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.btn-icon {
+    transition: transform 0.1s;
+    display: inline-block;
+    height: 3rem; 
+    aspect-ratio: 1/1;
+    
+    &:hover,
+    &:focus {
+        transform: scale(1.1);
+
+        color: var(--col-hover);
+    }       
 }

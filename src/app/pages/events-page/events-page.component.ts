@@ -4,6 +4,8 @@ import { EventCardComponent } from '../../common-ui/event-card/event-card.compon
 import { EventService } from '../../data/services/event.service';
 import { EventInterface } from '../../data/interfaces/event.interface';
 
+
+
 @Component({
   selector: 'app-events-page',
   standalone: true,
@@ -15,6 +17,7 @@ export class EventsPageComponent {
   eventService = inject(EventService)
   events: EventInterface[] = []
 
+
   constructor() {
     this.eventService.getEvents()
     .subscribe(value => {
@@ -22,5 +25,9 @@ export class EventsPageComponent {
             
       this.events = value
     })
+  }
+
+  handleDelete(id: string) {
+    this.events = this.events.filter(event => event.id !== id);
   }
 }

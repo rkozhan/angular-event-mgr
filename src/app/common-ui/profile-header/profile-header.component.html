@@ -1,0 +1,15 @@
+@if (profile(); as profile) {
+    <div class="avatar _ibg">
+        @if (profile.avatarUrl) {
+            <img [src]="profile.avatarUrl | imgUrl" alt="">
+        } @else {
+            <img src="/assets/imgs/avatar-placeholder.webp" alt="">
+        }
+
+    </div>
+    <div>
+        <div>{{profile.username}}</div>
+        <div>{{profile.email}}</div>
+        <a [routerLink]="['settings']">Details</a>
+    </div>
+}
