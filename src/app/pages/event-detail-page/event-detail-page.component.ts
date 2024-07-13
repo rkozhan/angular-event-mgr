@@ -1,4 +1,5 @@
-import { Component, Input, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EventInterface } from '../../data/interfaces/event.interface';
 import { ImgUrlPipe } from '../../data/helpers/pipes/img-url.pipe';
 import { RouterLink } from '@angular/router';
@@ -10,33 +11,36 @@ import { firstValueFrom } from 'rxjs';
 import { EventService } from '../../data/services/event.service';
 
 @Component({
-  
-  selector: 'app-event-card',
+  selector: 'app-event-detail-page',
   standalone: true,
-  imports: [ImgUrlPipe, RouterLink],
-  templateUrl: './event-card.component.html',
-  styleUrl: './event-card.component.scss'
+  imports: [],
+  templateUrl: './event-detail-page.component.html',
+  styleUrls: ['./event-detail-page.component.scss']
 })
-export class EventCardComponent {
+export class EventDetailPageComponent implements OnInit {
+  route = inject(ActivatedRoute);
+  eventService = inject(EventService);
   userService = inject(UserService)
-  eventService = inject(EventService)
 
-  @Input() event!: EventInterface
-  @Input() onDelete!: (id: string) => void;
-
-  isActive = signal<boolean>(false)
+  eventId: string | null = null;
+  event: EventInterface | null = null;
 
   me = this.userService.me
+  
+  async ngOnInit() {
+    this.eventId = this.route.snapshot.paramMap.get('id');
 
-  ngOnInit() {
-    firstValueFrom(this.userService.getMe())
+    if (this.eventId) {
+      this.event = await firstValueFrom(this.eventService.getEventById(this.eventId));
+    }
+  
   }
+  
 
   async deleteEvent() {
-    if (confirm('Are you sure you want to delete this event?')) {
+    if (this.eventId && confirm('Are you sure you want to delete this event?')) {
       try {
-        await firstValueFrom(this.eventService.deleteEvent(this.event.id));
-        this.onDelete(this.event.id); // Notify parent about the deletion
+        await firstValueFrom(this.eventService.deleteEvent(this.eventId));
       } catch (error) {
         console.error('Error deleting event:', error);
       }
@@ -55,6 +59,4 @@ export class EventCardComponent {
       }
     );
   }
-
-
 }

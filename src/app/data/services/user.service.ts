@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { UserInterface } from '../interfaces/user.interface';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
+import { UserDetailedInterface } from '../interfaces/user-detailed.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,19 @@ export class UserService {
     return this.http.get<UserInterface>(`${this.baseApiUrl}users/me`)
     .pipe(
       tap(res => {
+        console.log(res);
+        
         this.me.set(res)        
       })
     )
   }
 
   getAccount (id: string) {
-    return this.http.get<UserInterface>(`${this.baseApiUrl}users/{id}`)
+    return this.http.get<UserInterface>(`${this.baseApiUrl}users/${id}`)
+  }
+
+  getAccountDetailed(id: string) {
+    return this.http.get<UserDetailedInterface>(`${this.baseApiUrl}users/detailed/${id}`)
   }
 
 }

@@ -24,7 +24,6 @@ export class HeaderComponent {
     firstValueFrom(this.userService.getMe())
 
     console.log(this.me);
-    
   }
   
   logout() {

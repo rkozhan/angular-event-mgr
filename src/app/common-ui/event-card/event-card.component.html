@@ -19,6 +19,7 @@
                 <h2 class="event-card__title">{{event.title}}</h2>
             </a>
             <div class="event-card__location _before-icon">{{event.location}}</div>
+            <div class="event-card__date _before-icon">{{event.date}}</div>
             <div class="event-card__time _before-icon">{{event.time}}</div>
 
             <div class="event-card__dash">
@@ -27,16 +28,17 @@
                     <img src="/assets/svg/members.svg" alt="icon join">
                     <span class="event-card__members_label">9</span>
                 </div>
-                <button class="event-card__favorite btn-icon _ibg">
-                    <img src="/assets/svg/favor.svg" alt="icon favorite">
-                </button>
-                <button class="event-card__join btn-icon _ibg">
-                    <img src="/assets/svg/join.svg" alt="icon join">
-                </button>
-
-
 
                 @if (me(); as me) {
+
+                    <button class="event-card__favorite btn-icon _ibg">
+                        <img src="/assets/svg/favor.svg" alt="icon favorite">
+                    </button>
+
+                    <button class="event-card__join btn-icon _ibg" (click)="registerForEvent(me.id, event.id)">
+                        <img src="/assets/svg/join.svg" alt="icon join">
+                    </button>
+
                     @if (me.email === event.createdBy) {
                         <button class="event-card__edit btn-icon _ibg">
                             <img src="/assets/svg/edit.svg" alt="icon edit">

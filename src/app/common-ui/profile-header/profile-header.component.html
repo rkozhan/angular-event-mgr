@@ -10,6 +10,6 @@
     <div>
         <div>{{profile.username}}</div>
         <div>{{profile.email}}</div>
-        <a [routerLink]="['settings']">Details</a>
+        <a [routerLink]="['/users', profile.id]">{{profile.id}}</a>
     </div>
 }

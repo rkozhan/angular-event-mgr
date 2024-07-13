@@ -58,7 +58,6 @@ export class SignupPageComponent {
           next: res => {
             this.loading.set(false);
             this.form.reset
-            alert("Success!")
             this.router.navigate(['/login']);
           },
           error: error => {

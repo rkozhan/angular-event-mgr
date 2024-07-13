@@ -26,9 +26,6 @@ export class AuthService {
     this.token = this.cookieService.get('token')
     //this.refreshToken = this.cookieService.get('refreshToken')
   }
-
-  console.log("isAuth" + !!this.token);
-  
   return !!this.token
  }
 

@@ -1,0 +1,60 @@
+@if (event) {
+    <div class="event-detail">
+
+        <h1>{{ event.title }}</h1>
+
+        <div class="event-detail__image _ibg">
+            @if (event.imgUrls && event.imgUrls[0]) {
+                <img
+                [src]="event.imgUrls[0]"
+                [alt]="event.title"
+                class="event-detail__avatar">
+            } @else {
+                <img
+                src="https://picsum.photos/id/158/200/300?blur=1"
+                alt="default event picture"
+                class="event-detail__avatar">
+            }
+        </div>
+    
+        <div class="event-detail__main">
+            <p>{{ event.description }}</p>
+            
+            <div class="event-detail__location _before-icon">{{event.location}}</div>
+            <div class="event-detail__time _before-icon">{{event.time}}</div>
+
+
+            <div class="event-detail__dash">
+
+                <div class="event-detail__members _ibg">
+                    <img src="/assets/svg/members.svg" alt="icon join">
+                    <span class="event-detail__members_label">9</span>
+                </div>
+
+                @if (me(); as me) {
+
+                    <button class="event-detail__favorite btn-icon _ibg">
+                        <img src="/assets/svg/favor.svg" alt="icon favorite">
+                    </button>
+
+                    <button class="event-detail__join btn-icon _ibg" (click)="registerForEvent(me.id, event.id)">
+                        <img src="/assets/svg/join.svg" alt="icon join">
+                    </button>
+
+                    @if (me.email === event.createdBy) {
+                        <button class="event-detail__edit btn-icon _ibg">
+                            <img src="/assets/svg/edit.svg" alt="icon edit">
+                        </button>
+                        <button class="event-detail__del btn-icon _ibg" (click)="deleteEvent()">
+                            <img src="/assets/svg/bin.svg" alt="icon delete">
+                        </button>
+                    }
+
+                    <div>{{me.id}}</div>
+                }
+            </div>        
+        </div>
+    </div>
+}
+
+
