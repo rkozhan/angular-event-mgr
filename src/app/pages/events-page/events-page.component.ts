@@ -4,8 +4,6 @@ import { EventCardComponent } from '../../common-ui/event-card/event-card.compon
 import { EventService } from '../../data/services/event.service';
 import { EventInterface } from '../../data/interfaces/event.interface';
 
-
-
 @Component({
   selector: 'app-events-page',
   standalone: true,

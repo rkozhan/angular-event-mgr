@@ -7,9 +7,9 @@
         }
 
     </div>
-    <div>
-        <div>{{profile.username}}</div>
-        <div>{{profile.email}}</div>
-        <a [routerLink]="['/users', profile.id]">{{profile.id}}</a>
+    <div class="profile-card__main">
+        <div class="profile-card__username">{{profile.username}}</div>
+        <div class="profile-card__email">{{profile.email}}</div>
+        <a class="profile-card__link" [routerLink]="['/users', profile.id]">Details</a>
     </div>
 }

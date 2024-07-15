@@ -66,9 +66,7 @@ export class AuthService {
     const roles = payload.isEditor ? ['ROLE_EDITOR'] : ['ROLE_USER'];
 
     const signupPayload = {
-      username: payload.username,
-      password: payload.newPassword,
-      email: payload.email,
+      ...payload,
       roles: roles
     };
 

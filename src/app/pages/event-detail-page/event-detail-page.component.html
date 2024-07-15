@@ -1,6 +1,8 @@
 @if (event) {
     <div class="event-detail">
 
+        <a class="event-detail_backlink" [routerLink]="['/']">All Events</a>
+
         <h1>{{ event.title }}</h1>
 
         <div class="event-detail__image _ibg">
@@ -28,7 +30,7 @@
 
                 <div class="event-detail__members _ibg">
                     <img src="/assets/svg/members.svg" alt="icon join">
-                    <span class="event-detail__members_label">9</span>
+                    <span class="event-detail__members_label">{{participantsNum()}}</span>
                 </div>
 
                 @if (me(); as me) {

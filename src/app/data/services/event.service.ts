@@ -1,22 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
-import { EventInterface } from '../interfaces/event.interface';
 import { RegistrationInterface } from '../interfaces/registration.interface';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, tap, throwError, Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { EventInterface } from '../interfaces/event.interface';
+import { EventDetailedInterface } from '../interfaces/event-detailed.interface';
+import { EventAddRequestInterface } from '../interfaces/event-add-request.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
-  userService = inject(UserService);
   http = inject(HttpClient)
+  userService = inject(UserService)
   baseApiUrl = "http://localhost:5454/api/v1/"
 
   me = this.userService.getMe
 
   userRegistrations: RegistrationInterface[] = [];
-
     constructor() {
   }
 
@@ -26,6 +27,10 @@ export class EventService {
 
   getEventById(id: string) {
     return this.http.get<EventInterface>(`${this.baseApiUrl}events/${id}`)
+  }
+
+  getEventDetailedById(id: string) {
+    return this.http.get<EventDetailedInterface>(`${this.baseApiUrl}events/detailed/${id}`)
   }
 
   deleteEvent(id: string) {
@@ -42,6 +47,13 @@ export class EventService {
   registerForEvent(userId: string, eventId: string) {
     const registration: RegistrationInterface = { userId, eventId }; // Replace with your actual interface
     return this.http.post<RegistrationInterface>(`${this.baseApiUrl}registrations`, registration);
+  }
+
+
+
+  addEvent(payload: EventAddRequestInterface) {
+    return this.http.post<EventAddRequestInterface>(`${this.baseApiUrl}events`, payload)
+      .pipe(tap(value => console.log(value)));
   }
 
 }

@@ -1,8 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventInterface } from '../../data/interfaces/event.interface';
+import { EventDetailedInterface } from '../../data/interfaces/event-detailed.interface';
 import { ImgUrlPipe } from '../../data/helpers/pipes/img-url.pipe';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { UserInterface } from '../../data/interfaces/user.interface';
 import { UserService } from '../../data/services/user.service';
@@ -13,7 +13,7 @@ import { EventService } from '../../data/services/event.service';
 @Component({
   selector: 'app-event-detail-page',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './event-detail-page.component.html',
   styleUrls: ['./event-detail-page.component.scss']
 })
@@ -23,20 +23,24 @@ export class EventDetailPageComponent implements OnInit {
   userService = inject(UserService)
 
   eventId: string | null = null;
-  event: EventInterface | null = null;
+  event: EventDetailedInterface | null = null;
 
   me = this.userService.me
+  joinedByMe = signal(false)
+  participantsNum = signal(0);
   
   async ngOnInit() {
     this.eventId = this.route.snapshot.paramMap.get('id');
 
     if (this.eventId) {
-      this.event = await firstValueFrom(this.eventService.getEventById(this.eventId));
+      this.event = await firstValueFrom(this.eventService.getEventDetailedById(this.eventId));
     }
-  
+
+    if (this.event) {
+      this.participantsNum.set(this.event.participants.length)
+    }
   }
   
-
   async deleteEvent() {
     if (this.eventId && confirm('Are you sure you want to delete this event?')) {
       try {
@@ -52,6 +56,7 @@ export class EventDetailPageComponent implements OnInit {
     firstValueFrom(this.eventService.registerForEvent(userId, eventId)).then(
       () => {
         alert('Successfully registered for the event!');
+        this.participantsNum.set(this.participantsNum() + 1)
       },
       (error) => {
         console.error('Error registering for event:', error);

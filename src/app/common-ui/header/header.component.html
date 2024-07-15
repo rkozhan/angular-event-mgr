@@ -1,32 +1,34 @@
 
-<header>
+<header class="header" [class.active]="isActive">
 
-    <div class="me">
-        @if (me(); as me) {
-
-            <div class="avatar">
-                @if (me.avatarUrl) {
-                    <img [src]="me.avatarUrl | imgUrl" alt="">
-                } @else {
-                    <img src="/assets/imgs/avatar-placeholder.webp" alt="">
-                }
-
-            </div>
-            <div>
-                <div>Welcome, {{me.username}}</div>
-                <div>{{me.email}}</div>
-                <a [routerLink]="['settings']">Settings</a>
-            </div>
+    <div class="header__me">
+        @if (me(); as profile) {
+            <app-profile-header [profile]=profile></app-profile-header>
         }
-    
     </div>
 
-    <nav class="header-nav">
-        <a [routerLink]="['/users']" *ngIf="authService.isAdmin">Users for admin</a>
-        <a [routerLink]="['/users']" *ngIf="authService.isAuth">Users</a>
-        <a [routerLink]="['/']">Home</a>
+    <nav class="header__nav" (click)="setActive()">
+        <a class="header__nav_link" [routerLink]="['/me']">Settings</a>
+
+        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">Users</a>
+
+        <a class="header__nav_link" [routerLink]="['/events/add']" *ngIf="authService.isEditor">Add new event</a>
+
+        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAuth">something...</a>
+
+        <a class="header__nav_link" [routerLink]="['/']">Home</a>
         
-        <button *ngIf="authService.isAuth" (click)="logout()">Logout</button>
+        <button class="header__nav_btn" *ngIf="authService.isAuth" (click)="logout()">Logout</button>
+
     </nav>
+
+
+        <button class="header__burger btn-icon _ibg" (click)="toggleActive()">
+            <img src="/assets/svg/menu.svg" alt="icon menu" [class.active]="!isActive">
+            <img src="/assets/svg/close.svg" alt="icon menu" [class.active]="isActive">
+        </button>
+
+
+
     
 </header>

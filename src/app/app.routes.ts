@@ -8,10 +8,15 @@ import { LayoutComponent } from './common-ui/layout/layout.component';
 import { EventDetailPageComponent } from './pages/event-detail-page/event-detail-page.component';
 import { ForbiddenComponent } from './common-ui/forbidden/forbidden.component';
 import { canActivateAdminView, canActivateAuth, canActivateEditorView, canActivateLogin } from './auth/access.guard';
+import { FormEventAddComponent } from './pages/form-event-add/form-event-add.component';
+
+
+import { LoginSignupPageComponent } from './pages/login-signup-page/login-signup-page.component';
 
 export const routes: Routes = [
     {path: '', component: LayoutComponent, children: [
             {path: '', component: EventsPageComponent},
+            {path: 'events/add', component: FormEventAddComponent, canActivate: [canActivateEditorView] },
             //{path: 'users', component: UsersPageComponent, canActivate: [canActivateAdminView]},
             {path: 'users', component: UsersPageComponent},
             {path: 'users/:id', component: ProfilePageComponent},
@@ -21,5 +26,8 @@ export const routes: Routes = [
     },
     {path: 'login', component: LoginPageComponent, canActivate: [canActivateLogin]},
     {path: 'signup', component: SignupPageComponent, canActivate: [canActivateLogin]},
-    {path: '403', component: ForbiddenComponent}
+    {path: '403', component: ForbiddenComponent},
+
+
+    {path: 'start', component: LoginSignupPageComponent}
 ];

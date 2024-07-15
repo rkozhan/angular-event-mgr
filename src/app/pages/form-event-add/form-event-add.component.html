@@ -1,0 +1,45 @@
+
+<form class="add-event-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Add new event:</h1>
+
+    <label class="em-control-label">
+        Title:
+        <input formControlName="title" class="em-input" type="text" placeholder="title" />
+    </label>
+
+    <label class="em-control-label">
+        Description:
+        <textarea formControlName="description" class="em-input" placeholder="description" required></textarea>
+    </label>
+
+    <label class="em-control-label">
+        Date:
+        <input formControlName="date" class="em-input" type="date" required />
+    </label>
+
+    <label class="em-control-label">
+        Time:
+        <input formControlName="time" class="em-input" type="time" required />
+    </label>
+
+    <label class="em-control-label">
+        Location:
+        <input formControlName="location" class="em-input" type="text" placeholder="location" required />
+    </label>
+
+    <label class="em-control-label">
+        Category:
+        <input formControlName="category" class="em-input" type="text" placeholder="category" required />
+    </label>
+
+    <button type="submit">Add event</button>
+
+    <div class="form-result">
+        <ng-container *ngIf="loading(); else errorTemplate">
+            <app-spinner></app-spinner>
+        </ng-container>
+        <ng-template #errorTemplate>
+            <app-error [errorMessage]="errorMessage()"></app-error>
+        </ng-template>
+    </div>
+</form>

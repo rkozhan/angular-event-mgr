@@ -29,6 +29,12 @@ body {
     font-size: 1.6rem;
 }
 
+main {
+    flex: 1 1 auto;
+    overflow-y: scroll;
+    margin-top: 2rem;
+}
+
 h1 {
     font-size: 3rem;
 }
@@ -66,10 +72,7 @@ form {
 }
 
 
-main {
-    flex: 1 1 auto;
-    overflow-y: scroll;
-}
+
 
 button {
     cursor: pointer;
