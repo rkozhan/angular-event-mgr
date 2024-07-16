@@ -14,12 +14,12 @@
 
     <label class="em-control-label">
         Date:
-        <input formControlName="date" class="em-input" type="date" required />
+        <input type="date" min="{{ today | date: 'yyyy-MM-dd' }}" />
     </label>
 
     <label class="em-control-label">
         Time:
-        <input formControlName="time" class="em-input" type="time" required />
+        <input formControlName="time" class="em-input" type="time" required step="600"/>
     </label>
 
     <label class="em-control-label">

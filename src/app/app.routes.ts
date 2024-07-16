@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
@@ -11,8 +12,6 @@ import { canActivateAdminView, canActivateAuth, canActivateEditorView, canActiva
 import { FormEventAddComponent } from './pages/form-event-add/form-event-add.component';
 
 
-import { LoginSignupPageComponent } from './pages/login-signup-page/login-signup-page.component';
-
 export const routes: Routes = [
     {path: '', component: LayoutComponent, children: [
             {path: '', component: EventsPageComponent},
@@ -24,10 +23,11 @@ export const routes: Routes = [
         ],
         canActivate: [canActivateAuth]
     },
+    {path: 'welcome', component: WelcomePageComponent, canActivate: [canActivateLogin]},
     {path: 'login', component: LoginPageComponent, canActivate: [canActivateLogin]},
     {path: 'signup', component: SignupPageComponent, canActivate: [canActivateLogin]},
     {path: '403', component: ForbiddenComponent},
 
 
-    {path: 'start', component: LoginSignupPageComponent}
+    
 ];

@@ -22,6 +22,9 @@ export class FormEventAddComponent implements OnInit {
   userService = inject(UserService);
   router = inject(Router);
 
+  today: Date = new Date();
+  nextYear: Date = new Date();
+
   me = this.userService.me;
   createdBy: string | undefined;
 
@@ -40,6 +43,8 @@ export class FormEventAddComponent implements OnInit {
   async ngOnInit() {
     if (this.me()) {
       this.createdBy = this.me()?.id;
+
+      this.nextYear.setFullYear(this.today.getFullYear() + 1);
       
       console.log("init");
     }

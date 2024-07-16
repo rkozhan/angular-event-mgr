@@ -33,6 +33,10 @@ export class EventService {
     return this.http.get<EventDetailedInterface>(`${this.baseApiUrl}events/detailed/${id}`)
   }
 
+  getRandomEventDetailed() {
+    return this.http.get<EventDetailedInterface>(`${this.baseApiUrl}events/random`)
+  }
+
   deleteEvent(id: string) {
     return this.http.delete(`${this.baseApiUrl}events/${id}`, { responseType: 'text' });
   }

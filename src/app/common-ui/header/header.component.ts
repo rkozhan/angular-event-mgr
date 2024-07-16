@@ -36,10 +36,4 @@ export class HeaderComponent {
     this.isActive = !this.isActive;
   }
 
-  setActive() {
-    this.isActive = false;
-    console.log("set");
-    
-  }
-
 }

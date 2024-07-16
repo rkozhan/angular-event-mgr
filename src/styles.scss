@@ -107,13 +107,13 @@ a {
 
 ._before-icon {
     position: relative; 
-    padding-left: 2.5rem;
+    padding-left: 3rem;
 
     &::before {
         content: '';
         display: inline-block;
-        width: 2rem;
-        height: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
         background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
@@ -126,7 +126,8 @@ a {
 .btn-icon {
     transition: transform 0.1s;
     display: inline-block;
-    height: 3rem; 
+    height: 4rem;
+    padding: .5rem; 
     aspect-ratio: 1/1;
     
     &:hover,

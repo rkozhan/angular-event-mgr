@@ -32,6 +32,9 @@
     &__location::before {
         background-image: url('/assets/svg/location.svg'); 
     }
+    &__date::before {
+        background-image: url('/assets/svg/date.svg');
+    }
     &__time::before {
         background-image: url('/assets/svg/time.svg');
     }

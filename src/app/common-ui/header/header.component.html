@@ -7,7 +7,7 @@
         }
     </div>
 
-    <nav class="header__nav" (click)="setActive()">
+    <nav class="header__nav">
         <a class="header__nav_link" [routerLink]="['/me']">Settings</a>
 
         <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">Users</a>
