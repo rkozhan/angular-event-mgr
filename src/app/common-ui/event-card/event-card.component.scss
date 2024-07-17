@@ -1,6 +1,29 @@
 .event-card {
     box-shadow: 0 0 0 2px var(--col-primary);
     display: flex;
+    position: relative;
+
+    &.cancelled {
+        &:after {
+            content: "Cancelled !";
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-size: 3rem;
+            color: darkred;
+            transform: rotate(30deg) translateX(-50%);
+        }
+
+        .event-card__main {
+            opacity: .5;
+        }
+
+        .event-card__favorite,
+        .event-card__join {
+            pointer-events: none;
+        }
+    }
 
     &__image {
         width: 25vmin;

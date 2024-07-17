@@ -8,28 +8,36 @@ import { UserService } from '../../data/services/user.service';
 import { firstValueFrom } from 'rxjs';
 
 import { EventService } from '../../data/services/event.service';
+import { AuthService } from '../../auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   
   selector: 'app-event-card',
   standalone: true,
-  imports: [ImgUrlPipe, RouterLink],
+  imports: [ImgUrlPipe, RouterLink, CommonModule],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'
 })
 export class EventCardComponent {
   userService = inject(UserService)
   eventService = inject(EventService)
+  public authService = inject(AuthService);
 
   @Input() event!: EventInterface
+  @Input() me!: any; 
   @Input() onDelete!: (id: string) => void;
+
+  isCancelled = signal<boolean>(false);
+
 
   isActive = signal<boolean>(false)
 
-  me = this.userService.me
-
   ngOnInit() {
-    firstValueFrom(this.userService.getMe())
+    if (this.event) {
+      this.isCancelled.set(this.event.cancelled);
+    }
+    
   }
 
   async deleteEvent() {
@@ -45,15 +53,17 @@ export class EventCardComponent {
 
   registerForEvent(userId: string, eventId: string) {
 
-    firstValueFrom(this.eventService.registerForEvent(userId, eventId)).then(
-      () => {
-        alert('Successfully registered for the event!');
-      },
-      (error) => {
-        console.error('Error registering for event:', error);
-        alert('Failed to register for the event. Please try again.');
-      }
-    );
+    if (!this.isCancelled()) {
+      firstValueFrom(this.eventService.registerForEvent(userId, eventId)).then(
+        () => {
+          alert('Successfully registered for the event!');
+        },
+        (error) => {
+          console.error('Error registering for event:', error);
+          alert('Failed to register for the event. Please try again.');
+        }
+      );
+    }
   }
 
 

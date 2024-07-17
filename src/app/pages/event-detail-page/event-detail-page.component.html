@@ -1,5 +1,5 @@
 @if (event) {
-<div class="event-detail">
+<div class="event-detail" [class.cancelled]="isCancelled()">
     <a class="event-detail_backlink" [routerLink]="['/']">All Events</a>
     <h1>{{ event.title }}</h1>
 
@@ -46,14 +46,15 @@
             </app-join-button>
 
 
-
-
             @if (me.id === event.createdBy) {
+
             <button class="event-detail__edit btn-icon _ibg">
                 <img src="/assets/svg/edit.svg" alt="icon edit">
             </button>
 
             <app-delete-event-button [eventId]="event.id"></app-delete-event-button>
+
+            <app-toogle-event-cancelled [eventId]="event.id" [isCancelled]="isCancelled" ></app-toogle-event-cancelled>
             }
             
             }

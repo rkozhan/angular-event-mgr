@@ -8,5 +8,5 @@ export interface EventInterface {
     category: string,
     createdBy: string,
     imgUrls: string[],
-    isCancelled: boolean
+    cancelled: boolean
 }

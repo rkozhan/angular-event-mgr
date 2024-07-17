@@ -8,6 +8,26 @@
     flex-direction: column;
     gap: 3rem;
 
+        &.cancelled {
+                .event-detail__image:after {
+                    content: "Cancelled ! ! !";
+                    width: max-content;
+                    font-weight: bold;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    font-size: 3rem;
+                    color: darkred;
+                    transform: rotate(30deg) translateX(-50%);
+                }
+                
+                .event-detail__favorite,
+                app-join-button {
+                    opacity: .5;
+                    pointer-events: none;
+                }
+            }
+
 
     h1 {
         font-size: 4rem;

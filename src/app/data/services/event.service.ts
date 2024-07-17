@@ -41,13 +41,6 @@ export class EventService {
     return this.http.delete(`${this.baseApiUrl}events/${id}`, { responseType: 'text' });
   }
 
-
-  getUserRegistrations(userId: string) {
-    return this.http.get<RegistrationInterface[]>(`${this.baseApiUrl}registrations/users/${userId}`)
-    .pipe(
-      tap(val => console.log(val)))
-  }
-
   registerForEvent(userId: string, eventId: string) {
     const registration: RegistrationInterface = { userId, eventId }; // Replace with your actual interface
     return this.http.post<RegistrationInterface>(`${this.baseApiUrl}registrations`, registration);
@@ -62,5 +55,18 @@ export class EventService {
     return this.http.post<EventAddRequestInterface>(`${this.baseApiUrl}events`, payload)
       .pipe(tap(value => console.log(value)));
   }
+
+
+  toggleIsCancelled(id: string) {
+    return this.http.put(`${this.baseApiUrl}events/${id}`, null)
+      .pipe(
+        tap(response => console.log('Toggled isCancelled:', response)),
+        catchError(error => {
+          console.error('Error toggling isCancelled:', error);
+          return throwError(error);
+        })
+      );
+  }
+
 
 }

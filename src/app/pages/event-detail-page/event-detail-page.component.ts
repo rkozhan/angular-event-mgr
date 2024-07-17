@@ -7,12 +7,13 @@ import { UserService } from '../../data/services/user.service';
 import { EventService } from '../../data/services/event.service';
 import { JoinButtonComponent } from '../../common-ui/buttons/join-button.component';
 import { DeleteEventButtonComponent } from '../../common-ui/buttons/delete-event-button.component';
+import { ToogleEventCancelledComponent } from '../../common-ui/buttons/toogle-event-cancelled.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-event-detail-page',
   standalone: true,
-  imports: [RouterLink, JoinButtonComponent, DeleteEventButtonComponent, CommonModule],
+  imports: [RouterLink, JoinButtonComponent, DeleteEventButtonComponent, CommonModule, ToogleEventCancelledComponent],
   templateUrl: './event-detail-page.component.html',
   styleUrls: ['./event-detail-page.component.scss']
 })
@@ -30,6 +31,8 @@ export class EventDetailPageComponent implements OnInit {
   participantsNum = signal(0);
   isJoinedByMe = signal(false);
 
+  isCancelled = signal<boolean>(false);
+
   async ngOnInit() {
     await firstValueFrom(this.userService.getMe());
     
@@ -42,6 +45,8 @@ export class EventDetailPageComponent implements OnInit {
     if (this.event) {
       this.participants.set(this.event.participants);
       this.participantsNum.set(this.participants().length);
+
+      this.isCancelled.set(this.event.cancelled);
     }
 
     const currentUser = this.me();
@@ -52,5 +57,8 @@ export class EventDetailPageComponent implements OnInit {
       const participantIDs = participantsList.map(participant => participant.id);
       this.isJoinedByMe.set(participantIDs.includes(currentUserID));
     }
+
+
+
   }
 }

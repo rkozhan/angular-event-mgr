@@ -1,12 +1,17 @@
-<div class="event__menu">EVENT_MENU</div>
+<div class="event__menu">
+    <button (click)="showAllEvents()" >All:</button>
+    <button (click)="showCreatedByMe()" *ngIf="authService.isEditor">My:</button>
+    <input type="text" (input)="handleInputChange($event)">
+</div>
 
 <ul
     class="event__list"
 >
-    @for (event of events; track event.id) {
+    @for (event of eventsFiltered; track event.id) {
         <app-event-card
             [event]=event
             [onDelete]="handleDelete.bind(this)"
+            [me]="me"
             ></app-event-card>
     }
 </ul>

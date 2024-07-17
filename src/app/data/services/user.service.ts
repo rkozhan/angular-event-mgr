@@ -21,8 +21,6 @@ export class UserService {
     return this.http.get<UserInterface>(`${this.baseApiUrl}users/me`)
     .pipe(
       tap(res => {
-        console.log(res);
-        
         this.me.set(res)        
       })
     )

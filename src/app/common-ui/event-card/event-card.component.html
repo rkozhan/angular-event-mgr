@@ -1,5 +1,5 @@
 @if (event) {
-    <li class="event-card">
+    <li class="event-card" [class.cancelled]="isCancelled()">
 
         <a [routerLink]="['/events', event.id]" class="event-card__image _ibg">
             @if (event.imgUrls && event.imgUrls[0]) {
@@ -15,7 +15,7 @@
             }
         </a>
         <div class="event-card__main">
-            <a [routerLink]="['/events', event.id]">
+            <a [routerLink]="['/events', event.id] ">
                 <h2 class="event-card__title">{{event.title}}</h2>
             </a>
             <div class="event-card__location _before-icon">{{event.location}}</div>
@@ -31,15 +31,15 @@
 
                 @if (me(); as me) {
 
-                    <button class="event-card__favorite btn-icon _ibg">
+                    <button class="event-card__favorite btn-icon _ibg" *ngIf="authService.isUser">
                         <img src="/assets/svg/favor.svg" alt="icon favorite">
                     </button>
 
-                    <button class="event-card__join btn-icon _ibg" (click)="registerForEvent(me.id, event.id)">
+                    <button class="event-card__join btn-icon _ibg" (click)="registerForEvent(me.id, event.id)" *ngIf="authService.isUser">
                         <img src="/assets/svg/join.svg" alt="icon join">
                     </button>
 
-                    @if (me.email === event.createdBy) {
+                    @if (me.id === event.createdBy) {
                         <button class="event-card__edit btn-icon _ibg">
                             <img src="/assets/svg/edit.svg" alt="icon edit">
                         </button>
