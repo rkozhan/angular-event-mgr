@@ -7,12 +7,14 @@ import { UserService } from '../../data/services/user.service';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { ErrorComponent } from '../../common-ui/error/error.component';
+import { SpinnerComponent } from '../../common-ui/spinner/spinner.component';
   
 
 @Component({
   selector: 'app-events-page',
   standalone: true,
-  imports: [EventCardComponent, CommonModule],
+  imports: [EventCardComponent, CommonModule, ErrorComponent, SpinnerComponent],
   templateUrl: './events-page.component.html',
   styleUrl: './events-page.component.scss'
 })
@@ -27,18 +29,29 @@ export class EventsPageComponent {
 
   me = this.userService.me;
 
-  async ngOnInit() {
-    await firstValueFrom(this.userService.getMe());
-    this.events = await firstValueFrom(this.eventService.getEvents());
+  errorMessage = signal<string | null>(null);
+  loading = signal<boolean>(false);
 
-    if (this.authService.isUser) {
-      this.showAllEvents()
-    }
-    if (this.authService.isEditor) {
-      this.showCreatedByMe()
-    }
+  async ngOnInit() {
+    this.loading.set(true);
+    await firstValueFrom(this.userService.getMe());
+    await this.getUpcomingEvents();
+
+    this.filterByRole();
   }
 
+  async getPastEvents() {
+    this.loading.set(true);
+    this.events = await firstValueFrom(this.eventService.getEventsIncludePast());
+    this.filterByRole();
+  }
+
+  async getUpcomingEvents() {
+    this.loading.set(true);
+    this.events = await firstValueFrom(this.eventService.getEvents());
+    this.filterByRole();
+  }
+  
   showAllEvents() {
     this.eventsFiltered = this.events;
     console.log("all");
@@ -49,6 +62,20 @@ export class EventsPageComponent {
     this.eventsFiltered = this.events.filter(event => event.createdBy === userId);
     console.log("my");
   }
+
+  filterByRole() {
+    if (this.authService.isUser) {
+      this.eventsFiltered = this.events;
+      console.log("all");
+    }
+    if (this.authService.isEditor) {
+      const userId = this.userService.me()!.id;
+      this.eventsFiltered = this.events.filter(event => event.createdBy === userId);
+      console.log("my");
+    }
+    this.loading.set(false);
+  }
+
 
   handleInputChange(event: Event): void {
     // Cast the event to HTMLInputElement to access input-specific properties

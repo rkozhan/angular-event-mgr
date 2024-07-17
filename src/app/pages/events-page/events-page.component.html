@@ -1,4 +1,6 @@
 <div class="event__menu">
+    <button (click)="getPastEvents()" >Show past events:</button>
+    <button (click)="getUpcomingEvents()" >Show upcoming events:</button>
     <button (click)="showAllEvents()" >All:</button>
     <button (click)="showCreatedByMe()" *ngIf="authService.isEditor">My:</button>
     <input type="text" (input)="handleInputChange($event)">
@@ -15,4 +17,14 @@
             ></app-event-card>
     }
 </ul>
+
+
+    <div class="request-result">
+        @if (loading()) {
+        <app-spinner></app-spinner>
+        } @else {
+        <app-error [errorMessage]="errorMessage()"></app-error>
+        }
+    
+    </div>
 

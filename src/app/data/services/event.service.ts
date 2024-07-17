@@ -25,6 +25,10 @@ export class EventService {
     return this.http.get<EventInterface[]>(`${this.baseApiUrl}events`)
   }
 
+  getEventsIncludePast() {
+    return this.http.get<EventInterface[]>(`${this.baseApiUrl}events/all`)
+  }
+
   getEventById(id: string) {
     return this.http.get<EventInterface>(`${this.baseApiUrl}events/${id}`)
   }
