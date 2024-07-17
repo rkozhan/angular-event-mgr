@@ -1,0 +1,38 @@
+.welcome {
+    &__container {
+        background-color: green;
+        height: 500px;
+        width: 300px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__login {
+        background-color: white;
+        position: absolute;
+            height: 10rem;
+            width: 100%;
+            top: 0px;
+            left: 0px;
+
+            &.active {
+                height: 100%;
+            }
+    }
+
+    &__btn {
+        background-color: blue;
+        position: absolute;
+        width: 100%;
+        height: 14rem;
+        bottom: -2rem;
+        border-radius: 2rem;
+
+    }
+
+    &__signup {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+    }
+}

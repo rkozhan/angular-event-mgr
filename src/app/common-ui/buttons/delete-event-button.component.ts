@@ -3,6 +3,7 @@ import { EventService } from '../../data/services/event.service';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-delete-event-button',
   standalone: true,

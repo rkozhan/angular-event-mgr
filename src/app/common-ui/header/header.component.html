@@ -8,15 +8,13 @@
     </div>
 
     <nav class="header__nav">
-        <a class="header__nav_link" [routerLink]="['/me']">Settings</a>
-
-        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">Users</a>
+        <a class="header__nav_link" [routerLink]="['/']">Home</a>
+ 
+        <a class="header__nav_link" [routerLink]="['/me']">My Profile</a>
 
         <a class="header__nav_link" [routerLink]="['/events/add']" *ngIf="authService.isEditor">Add new event</a>
-
-        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAuth">something...</a>
-
-        <a class="header__nav_link" [routerLink]="['/']">Home</a>
+        
+        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">All Users</a>
         
         <button class="header__nav_btn" *ngIf="authService.isAuth" (click)="logout()">Logout</button>
 
@@ -24,8 +22,8 @@
 
 
         <button class="header__burger btn-icon _ibg" (click)="toggleActive()">
-            <img src="/assets/svg/menu.svg" alt="icon menu" [class.active]="!isActive">
-            <img src="/assets/svg/close.svg" alt="icon menu" [class.active]="isActive">
+            <img src="/assets/svg/menu.svg" alt="icon menu" [class.active]="isActive">
+            <img src="/assets/svg/close.svg" alt="icon menu" [class.active]="!isActive">
         </button>
 
 

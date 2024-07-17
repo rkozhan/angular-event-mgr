@@ -45,6 +45,10 @@ export class AuthService {
     return this.userRoles.includes("ROLE_ADMIN")
   }
 
+  get isUser() {
+    return this.userRoles.includes("ROLE_USER")
+  }
+
   login(payload: {email: string, password: string}) {
     //const fd = new FormData();
     //fd.append('email', payload.email)

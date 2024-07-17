@@ -11,7 +11,7 @@ export const canActivateAuth = () => {
         return true
     }
 
-    return inject(Router).createUrlTree(['/welcome'])
+    return inject(Router).createUrlTree(['/login'])
 }
 
 export const canActivateEditorView = () => {

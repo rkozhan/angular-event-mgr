@@ -53,7 +53,10 @@ export class EventService {
     return this.http.post<RegistrationInterface>(`${this.baseApiUrl}registrations`, registration);
   }
 
-
+  unregisterForEvent(userId: string, eventId: string) {
+    const url = `${this.baseApiUrl}registrations/${eventId}/${userId}`;
+    return this.http.delete(`${this.baseApiUrl}registrations/${eventId}/${userId}`, { responseType: 'text' })
+  }
 
   addEvent(payload: EventAddRequestInterface) {
     return this.http.post<EventAddRequestInterface>(`${this.baseApiUrl}events`, payload)

@@ -13,6 +13,7 @@
     --col-primary: darkred;
     --col-hover: green;
     --col-error: red;
+    --padding-min: 2rem;
     font-size: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -64,8 +65,10 @@ form {
 }
 
 .em-control-label {
+
     .em-input {
         display: block;
+        width: 100%;
         margin-top: .5rem;
         padding: .6rem;
     }
@@ -136,4 +139,25 @@ a {
 
         color: var(--col-hover);
     }       
+}
+
+
+@media (min-width: 768px) {
+
+
+    main {
+        padding-top: 12rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    header,
+    main,
+    footer {
+        padding-inline: max(calc((100% - 1280px) / 2), var(--padding-min));
+    }
+
+    main {
+        padding-top: 13rem;
+    }
 }

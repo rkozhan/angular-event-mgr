@@ -3,6 +3,10 @@
     <a class="event-detail_backlink" [routerLink]="['/']">All Events</a>
     <h1>{{ event.title }}</h1>
 
+    @if (isJoinedByMe()) {
+        <div>isJoined</div>
+    }
+
     <div class="event-detail__image _ibg">
         @if (event.imgUrls && event.imgUrls[0]) {
         <img [src]="event.imgUrls[0]" [alt]="event.title" class="event-detail__avatar">
@@ -20,17 +24,29 @@
         <div class="event-detail__dash">
             <div class="event-detail__members _ibg">
                 <img src="/assets/svg/members.svg" alt="icon join">
-                <span class="event-detail__members_label">{{participants().length}}</span>
+                <span class="event-detail__members_label">{{participantsNum()}}</span>
             </div>
 
+
+
+
             @if (me(); as me) {
-            <button class="event-detail__favorite btn-icon _ibg">
+            <button class="event-detail__favorite btn-icon _ibg" *ngIf="authService.isUser">
                 <img src="/assets/svg/favor.svg" alt="icon favorite">
             </button>
 
-            <app-join-button [eventId]="event.id" [userId]="me.id" [username]="me.username"
-                [participants]="participants">
+            <app-join-button
+                *ngIf="authService.isUser"
+                [eventId]="event.id"
+                [userId]="me.id"
+                [username]="me.username"
+                [participantsNum]="participantsNum" 
+                [isJoinedByMe]="isJoinedByMe" 
+            >
             </app-join-button>
+
+
+
 
             @if (me.id === event.createdBy) {
             <button class="event-detail__edit btn-icon _ibg">
