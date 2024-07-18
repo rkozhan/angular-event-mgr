@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EventService } from '../../data/services/event.service';
 import { Router, RouterLink } from '@angular/router';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { firstValueFrom, throwError } from 'rxjs';
 import { ErrorComponent } from '../../common-ui/error/error.component';
 import { CommonModule } from '@angular/common'; // for NgIf
 import { SpinnerComponent } from '../../common-ui/spinner/spinner.component';
@@ -23,7 +23,6 @@ export class FormEventAddComponent implements OnInit {
   router = inject(Router);
 
   today: Date = new Date();
-  nextYear: Date = new Date();
 
   me = this.userService.me;
   createdBy: string | undefined;
@@ -41,17 +40,24 @@ export class FormEventAddComponent implements OnInit {
   });
 
   async ngOnInit() {
+    await firstValueFrom(this.userService.getMe());
     if (this.me()) {
       this.createdBy = this.me()?.id;
-
-      this.nextYear.setFullYear(this.today.getFullYear() + 1);
       
       console.log("init");
     }
   }
 
   onSubmit() {
+    console.log('CreatedBy:', this.form.valid);
+    // Log the form validity and the form controls' values
+    console.log('Form valid:', this.form.valid);
+    console.log('Form values:', this.form.value);
+
+
     if (this.form.valid && this.createdBy) {
+
+      
       this.loading.set(true);
       this.errorMessage.set(null);
 

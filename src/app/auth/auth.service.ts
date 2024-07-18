@@ -70,10 +70,12 @@ export class AuthService {
     const roles = payload.isEditor ? ['ROLE_EDITOR'] : ['ROLE_USER'];
 
     const signupPayload = {
-      ...payload,
+      username: payload.username,
+      email: payload.email,
+      password: payload.newPassword,
       roles: roles
     };
-
+    
     return this.http.post<any>(
       `${this.baseApiUrl}signup`,
       signupPayload
@@ -81,12 +83,12 @@ export class AuthService {
       tap(response => {
         // Handle successful signup response if needed
         console.log('Signup successful', response);
-      }),
-      catchError(error => {
+      })//,
+      //catchError(error => {
         // Handle error in signup process
-        console.error('Error in signup', error);
-        return throwError(error);
-      })
+        //console.error('Error in signup', error);
+        //return throwError(error);
+      //})
     );
   }
 
