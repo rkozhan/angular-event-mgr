@@ -43,9 +43,9 @@ export class LoginPageComponent {
         catchError(error => {
           this.loading.set(false);
           if (error.status === 403) {
-            this.errorMessage.set('Invalid credentials. Please try again.')
+            this.errorMessage.set('Ungültige Zugangsdaten. Bitte versuch\'s no amoi.')
           } else {
-            this.errorMessage.set('An error occurred. Please try again later.')
+            this.errorMessage.set('Es is a Fehler passiert. Bitte versuch\'s später no amoi.')
           }
           return throwError(error)
         })

@@ -10,6 +10,7 @@ import { DeleteEventButtonComponent } from '../../common-ui/buttons/delete-event
 import { ToogleEventCancelledComponent } from '../../common-ui/buttons/toogle-event-cancelled.component';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-event-detail-page',
   standalone: true,

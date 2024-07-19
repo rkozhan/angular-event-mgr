@@ -13,6 +13,14 @@
                 alt="default event picture"
                 class="event-card__avatar">
             }
+
+            <div class="event-card__members">
+                <div class="_ibg">
+                    <img src="/assets/svg/members.svg" alt="icon join">
+                </div>
+                <span class="event-card__members_label">9</span>
+            </div>
+
         </a>
         <div class="event-card__main">
             <a [routerLink]="['/events', event.id] ">
@@ -24,10 +32,7 @@
 
             <div class="event-card__dash">
 
-                <div class="event-card__members _ibg">
-                    <img src="/assets/svg/members.svg" alt="icon join">
-                    <span class="event-card__members_label">9</span>
-                </div>
+
 
                 @if (me(); as me) {
 
@@ -40,11 +45,17 @@
                     </button>
 
                     @if (me.id === event.createdBy) {
-                        <button class="event-card__edit btn-icon _ibg">
-                            <img src="/assets/svg/edit.svg" alt="icon edit">
+                        <button class="event-card__edit btn-icon">
+                            <div class="_ibg">
+                                <img src="/assets/svg/edit.svg" alt="icon edit">
+                            </div>
+                            <span>Edit</span>
                         </button>
                         <button class="event-card__del btn-icon _ibg" (click)="deleteEvent()">
-                            <img src="/assets/svg/bin.svg" alt="icon delete">
+                            <div class="_ibg">
+                                <img src="/assets/svg/bin.svg" alt="icon delete">
+                            </div>
+                            <span>Delete</span>
                         </button>
                     }
                 }

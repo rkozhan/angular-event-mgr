@@ -2,8 +2,69 @@
     display: flex;
     height: 100%;
     width: 100%;
+    align-items: center;
 }
 
 .add-event-form {
-    margin: auto;
+    margin-inline: auto;
+}
+
+textarea {
+    height: 11rem;
+    resize: none;
+}
+
+@media (min-width: 768px) {
+    .add-event-form {
+            display: grid;
+            grid-auto-rows: 1fr;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 2rem 4rem;
+            grid-template-areas:
+                "f-h1 f-h1"
+                "f-t f-cat"
+                "f-date f-time"
+                "f-desc f-loc"
+                "f-desc f-btn"
+                "f-res f-res";
+        }
+    
+        .f-h1 {
+            grid-area: f-h1;
+        }
+    
+        .f-t {
+            grid-area: f-t;
+        }
+    
+        .f-cat {
+            grid-area: f-cat;
+        }
+    
+        .f-date {
+            grid-area: f-date;
+        }
+    
+        .f-time {
+            grid-area: f-time;
+        }
+    
+        .f-desc {
+            grid-area: f-desc;
+        }
+    
+        .f-loc {
+            grid-area: f-loc;
+        }
+    
+        .f-btn {
+            grid-area: f-btn;
+        }
+    
+        .f-res {
+            grid-area: f-res;
+        }
+
+
 }

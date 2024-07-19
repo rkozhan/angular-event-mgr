@@ -37,12 +37,12 @@ export class SignupPageComponent {
 
   onSubmit() {
     if (!this.checkIfPasswordMatches()) {
-      this.errorMessage.set("Password missmatch!");
+      this.errorMessage.set("Passwörter stimmen ned überein!");
       return
     }
 
     if (!this.form.valid) {
-      this.errorMessage.set("Fill in all inputs!");
+      this.errorMessage.set("Füll' alle Felder aus!");
       return
     }
 
@@ -63,11 +63,11 @@ export class SignupPageComponent {
           error: error => {
             this.loading.set(false);
             if (error.status === 403) {
-              this.errorMessage.set('Invalid signup attempt. Please try again.');
+              this.errorMessage.set('Ungültiger Anmeldeversuch. Bitte versuch\'s no amoi.');
             } else if (error.status === 400) {
-              this.errorMessage.set('This account already exists.');
+              this.errorMessage.set('Dieser Account existiert scho.');
             } else {
-              this.errorMessage.set(error.error.message || 'An error occurred. Please try again later.');
+              this.errorMessage.set(error.error.message || 'Es is a Fehler passiert. Bitte versuch\'s später no amoi.');
             }
           }
         });

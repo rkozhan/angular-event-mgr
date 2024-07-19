@@ -13,13 +13,13 @@
     </label>
 
     <label class="em-control-label">
-        Password:
+        Passwort:
         <div class="password-input">
             <input
                 formControlName="password"
                 class="em-input"
                 [type]="isPasswordVisible() ? 'text' : 'password'"
-                placeholder="Password"
+                placeholder="Passwort"
             />
             
             <button
@@ -41,7 +41,7 @@
         </div>
     </label>
 
-    <button type="submit">Login</button>
+    <button class="submit-btn" type="submit">Einloggen</button>
 
     <div class="form-result">
         @if (loading()) {
@@ -56,7 +56,7 @@
 
 </form>
 
-<a [routerLink]="['/signup']">Create account</a>
+<a [routerLink]="['/signup']" class="btn-styled">Erstell an Account</a>
 
 
 

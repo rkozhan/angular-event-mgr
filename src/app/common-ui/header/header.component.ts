@@ -7,11 +7,12 @@ import { UserService } from '../../data/services/user.service';
 import { firstValueFrom } from 'rxjs';
 import { ImgUrlPipe } from '../../data/helpers/pipes/img-url.pipe';
 import { ProfileHeaderComponent } from '../profile-header/profile-header.component';
+import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, ImgUrlPipe, ProfileHeaderComponent],
+  imports: [CommonModule, RouterLink, ImgUrlPipe, ProfileHeaderComponent, LogoComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -29,6 +30,8 @@ export class HeaderComponent {
   }
   
   logout() {
+    console.log("logout");
+    
     this.authService.logout();
   }
 

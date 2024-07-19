@@ -59,6 +59,26 @@
             
             }
         </div>
+
+        @if (me(); as me) {
+
+            @if (me.id === event.createdBy) {
+                <div class="event-detail__participants">
+                    <ul>
+                            @if (participants(); as participants) {
+
+                                @for (participant of participants; track participant.id) {
+                                    
+
+                                <li>{{participant.username}}</li>
+                                }
+
+                            }
+                    </ul>
+                </div>
+            }
+        }
+
     </div>
 </div>
 }

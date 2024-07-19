@@ -1,6 +1,8 @@
 
 <header class="header" [class.active]="isActive">
 
+    <app-logo fontSize="3rem" url="/"></app-logo>
+
     <div class="header__me">
         @if (me(); as profile) {
             <app-profile-header [profile]=profile></app-profile-header>
@@ -8,13 +10,20 @@
     </div>
 
     <nav class="header__nav">
-        <a class="header__nav_link" [routerLink]="['/']">Home</a>
  
-        <a class="header__nav_link" [routerLink]="['/me']">My Profile</a>
+        <!-- <a class="header__nav_link" [routerLink]="['/me']">Mein Profil</a> -->
 
-        <a class="header__nav_link" [routerLink]="['/events/add']" *ngIf="authService.isEditor">Add new event</a>
+        <a class="header__nav_link" [routerLink]="['/events/add']" *ngIf="authService.isEditor">Neues Event hinzufügn</a>
         
-        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">All Users</a>
+        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">All Benutzer</a>
+
+        <!-- <a class="header__nav_link" href="/#">Über uns:</a>
+
+        <a class="header__nav_link" href="/#">Kontakt:</a>
+
+        <a class="header__nav_link" href="/#">Impressum</a> -->
+
+
         
         <button class="header__nav_btn" *ngIf="authService.isAuth" (click)="logout()">Logout</button>
 

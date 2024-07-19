@@ -1,9 +1,10 @@
 <div class="event__menu">
-    <button (click)="getPastEvents()" >Show past events:</button>
-    <button (click)="getUpcomingEvents()" >Show upcoming events:</button>
-    <button (click)="showAllEvents()" >All:</button>
-    <button (click)="showCreatedByMe()" *ngIf="authService.isEditor">My:</button>
+    
     <input type="text" (input)="handleInputChange($event)">
+    <!-- <button class="menu-btn" (click)="getPastEvents()" >Vergangene</button>
+    <button class="menu-btn" (click)="getUpcomingEvents()" >Kommende</button> -->
+    <button class="menu-btn" (click)="showAllEvents()" >Olle:</button>
+    <button class="menu-btn" (click)="showCreatedByMe()" *ngIf="authService.isEditor">Mei:</button>
 </div>
 
 <ul

@@ -3,10 +3,23 @@
     border-radius: 1rem;
     gap: 1rem;
 
-    .avatar {
-        width: 5em;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        overflow: hidden;
-    }    
+    
+    .profile-card {
+        &__avatar {
+            width: 5em;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            overflow: hidden;
+        }   
+
+
+        &__main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: .8rem;
+        }
+
+    }
 }
+

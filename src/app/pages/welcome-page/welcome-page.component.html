@@ -1,16 +1,18 @@
-<p>welcome-page works!</p>
-
 @if (randomEvent) {
     <p>{{randomEvent.id}}</p>
-
 }
 
-<div class="welcome__container">
+<main>
+    <app-animated-heading [texts]="['Fad?',
+        'Ned bei uns!',
+        'Erstell an Account und erfahr de geilsten Events in OÖ!']"></app-animated-heading>
+    <app-logo fontSize="4rem"></app-logo>
+    
+    <a [routerLink]="['/signup']" class="btn-styled">Erstell an Account</a>
+    
+    <a [routerLink]="['/login']" class="btn-styled">Klick do zum Einloggen</a>
+</main>
+
+<app-footer></app-footer>
 
 
-    <div class="welcome__login">
-
-        <div class="welcome__btn"></div>
-    </div>
-    <div class="welcome__signup"></div>
-</div>

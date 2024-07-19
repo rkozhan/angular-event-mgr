@@ -3,11 +3,11 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >
-  <h1>Signup:</h1>
+  <h1>Anmeldung:</h1>
 
   <label class="em-control-label">
-    Username:
-    <input formControlName="username" class="em-input" type="text" placeholder="Username" />
+    Benutzanåme:
+    <input formControlName="username" class="em-input" type="text" placeholder="Benutzanåme" />
   </label>
 
   <label class="em-control-label">
@@ -16,29 +16,29 @@
   </label>
 
   <label class="em-control-label">
-    Password:
-    <input formControlName="newPassword" class="em-input" type="password" placeholder="Password" />
+    Passwort:
+    <input formControlName="newPassword" class="em-input" type="password" placeholder="Passwort" />
   </label>
 
   <label class="em-control-label">
-    Confirm Password:
+    Passwort bestätigen:
     <input
         type="password"
-        placeholder="Confirm Password"
         class="em-input"
         [class.pass-error]="!isPasswordMatches()"
         (blur)="isPasswordMatches.set(checkIfPasswordMatches())"
         formControlName="confirmPassword"
+        placeholder="Passwort bestätigen"
     />
 
   </label>
 
-  <label class="em-control-label">
-    <input formControlName="isEditor" type="checkbox" />
-    <span>Register as an Editor</span>
+  <label class="checkbox-label">
+    <input formControlName="isEditor" type="checkbox" class="signup-checkbox"/>
+    <div>Wü du Events erstö’n?<br/> Melde di ois Event-Mana’ga o!</div>
   </label>
 
-  <button type="submit">Create Account</button>
+  <button type="submit" class="submit-btn">Account Erstellen</button>
 
   <div class="form-result">
     @if (loading()) {
@@ -52,5 +52,5 @@
   
 </form>
 
-<p>Are you already have an account?</p>
-<a [routerLink]="['/login']">Click here to login</a>
+<p>Host scho an Account?</p>
+<a [routerLink]="['/login']" class="btn-styled">Zum Einloggen</a>
