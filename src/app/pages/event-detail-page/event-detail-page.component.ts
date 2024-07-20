@@ -6,15 +6,24 @@ import { firstValueFrom } from 'rxjs';
 import { UserService } from '../../data/services/user.service';
 import { EventService } from '../../data/services/event.service';
 import { JoinButtonComponent } from '../../common-ui/buttons/join-button.component';
+import { FavoriteButtonComponent } from '../../common-ui/buttons/favorite-button.component';
 import { DeleteEventButtonComponent } from '../../common-ui/buttons/delete-event-button.component';
 import { ToogleEventCancelledComponent } from '../../common-ui/buttons/toogle-event-cancelled.component';
 import { CommonModule } from '@angular/common';
+import { EventParticipantsNumberLabelComponent } from '../../common-ui/event-participants-number-label/event-participants-number-label.component';
 
 
 @Component({
   selector: 'app-event-detail-page',
   standalone: true,
-  imports: [RouterLink, JoinButtonComponent, DeleteEventButtonComponent, CommonModule, ToogleEventCancelledComponent],
+  imports: [RouterLink,
+    JoinButtonComponent,
+    DeleteEventButtonComponent,
+    FavoriteButtonComponent,
+    CommonModule,
+    ToogleEventCancelledComponent,
+    EventParticipantsNumberLabelComponent
+  ],
   templateUrl: './event-detail-page.component.html',
   styleUrls: ['./event-detail-page.component.scss']
 })
@@ -41,6 +50,16 @@ export class EventDetailPageComponent implements OnInit {
 
     if (this.eventId) {
       this.event = await firstValueFrom(this.eventService.getEventDetailedById(this.eventId));
+
+      const currentUser = this.me();
+
+      if (currentUser) {
+        console.log(currentUser.joinedEvents);
+
+        const joinedEvents = currentUser.joinedEvents;
+        const joinedEventsIds = joinedEvents.map(event => event.id);
+        this.isJoinedByMe.set(joinedEventsIds.includes(this.eventId));
+      }
     }
 
     if (this.event) {
@@ -49,17 +68,5 @@ export class EventDetailPageComponent implements OnInit {
 
       this.isCancelled.set(this.event.cancelled);
     }
-
-    const currentUser = this.me();
-    const participantsList = this.participants();
-
-    if (currentUser && participantsList) {
-      const currentUserID = currentUser.id;
-      const participantIDs = participantsList.map(participant => participant.id);
-      this.isJoinedByMe.set(participantIDs.includes(currentUserID));
-    }
-
-
-
   }
 }

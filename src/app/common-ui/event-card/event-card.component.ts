@@ -10,12 +10,20 @@ import { firstValueFrom } from 'rxjs';
 import { EventService } from '../../data/services/event.service';
 import { AuthService } from '../../auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { EventParticipantsNumberLabelComponent } from '../event-participants-number-label/event-participants-number-label.component';
+import { FavoriteButtonComponent } from '../buttons/favorite-button.component';
+import { JoinButtonComponent } from '../buttons/join-button.component';
 
 @Component({
-  
   selector: 'app-event-card',
   standalone: true,
-  imports: [ImgUrlPipe, RouterLink, CommonModule],
+  imports: [ImgUrlPipe,
+    RouterLink,
+    CommonModule,
+    EventParticipantsNumberLabelComponent,
+    FavoriteButtonComponent,
+    JoinButtonComponent
+  ],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'
 })
@@ -27,15 +35,19 @@ export class EventCardComponent {
   @Input() event!: EventInterface
   @Input() me!: any; 
   @Input() onDelete!: (id: string) => void;
+  @Input() joinedEventsIds!: () => string[]; 
 
   isCancelled = signal<boolean>(false);
 
+  participantsNum = signal(0);
 
-  isActive = signal<boolean>(false)
+  isJoinedByMe = signal(false);
 
   ngOnInit() {
     if (this.event) {
       this.isCancelled.set(this.event.cancelled);
+      
+      this.isJoinedByMe.set(this.joinedEventsIds().includes(this.event.id));
     }
     
   }
@@ -50,21 +62,5 @@ export class EventCardComponent {
       }
     }
   }
-
-  registerForEvent(userId: string, eventId: string) {
-
-    if (!this.isCancelled()) {
-      firstValueFrom(this.eventService.registerForEvent(userId, eventId)).then(
-        () => {
-          alert('Successfully registered for the event!');
-        },
-        (error) => {
-          console.error('Error registering for event:', error);
-          alert('Failed to register for the event. Please try again.');
-        }
-      );
-    }
-  }
-
 
 }

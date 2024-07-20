@@ -1,6 +1,7 @@
 @if (event) {
 <div class="event-detail" [class.cancelled]="isCancelled()">
     <a class="event-detail_backlink" [routerLink]="['/']">All Events</a>
+
     <h1>{{ event.title }}</h1>
 
     @if (isJoinedByMe()) {
@@ -13,6 +14,9 @@
         } @else {
         <img src="https://picsum.photos/id/158/200/300?blur=1" alt="default event picture" class="event-detail__avatar">
         }
+
+
+        <app-event-participants-number-label [participantsNum]="participantsNum()"></app-event-participants-number-label>
     </div>
 
     <div class="event-detail__main">
@@ -22,18 +26,16 @@
         <div class="event-detail__time _before-icon">{{event.time.slice(0, 5)}} Uhr</div>
 
         <div class="event-detail__dash">
-            <div class="event-detail__members _ibg">
-                <img src="/assets/svg/members.svg" alt="icon join">
-                <span class="event-detail__members_label">{{participantsNum()}}</span>
-            </div>
-
-
 
 
             @if (me(); as me) {
-            <button class="event-detail__favorite btn-icon _ibg" *ngIf="authService.isUser">
-                <img src="/assets/svg/favor.svg" alt="icon favorite">
-            </button>
+
+            <app-favorite-button
+                *ngIf="authService.isUser"
+                [eventId]="event.id"
+                [userId]="me.id"
+            >
+            </app-favorite-button>
 
             <app-join-button
                 *ngIf="authService.isUser"
@@ -68,9 +70,7 @@
                             @if (participants(); as participants) {
 
                                 @for (participant of participants; track participant.id) {
-                                    
-
-                                <li>{{participant.username}}</li>
+                                    <li>{{participant.username}}</li>
                                 }
 
                             }

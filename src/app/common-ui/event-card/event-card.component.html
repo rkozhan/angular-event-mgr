@@ -14,14 +14,9 @@
                 class="event-card__avatar">
             }
 
-            <div class="event-card__members">
-                <div class="_ibg">
-                    <img src="/assets/svg/members.svg" alt="icon join">
-                </div>
-                <span class="event-card__members_label">9</span>
-            </div>
-
+            <app-event-participants-number-label [participantsNum]="0"></app-event-participants-number-label>
         </a>
+
         <div class="event-card__main">
             <a [routerLink]="['/events', event.id] ">
                 <h2 class="event-card__title">{{event.title}}</h2>
@@ -32,17 +27,22 @@
 
             <div class="event-card__dash">
 
-
-
                 @if (me(); as me) {
 
-                    <button class="event-card__favorite btn-icon _ibg" *ngIf="authService.isUser">
-                        <img src="/assets/svg/favor.svg" alt="icon favorite">
-                    </button>
+                    <app-favorite-button
+                        *ngIf="authService.isUser"
+                        [eventId]="event.id"
+                        [userId]="me.id">
+                    </app-favorite-button>
 
-                    <button class="event-card__join btn-icon _ibg" (click)="registerForEvent(me.id, event.id)" *ngIf="authService.isUser">
-                        <img src="/assets/svg/join.svg" alt="icon join">
-                    </button>
+                    <app-join-button
+                        *ngIf="authService.isUser"
+                        [eventId]="event.id"
+                        [userId]="me.id"
+                        [participantsNum]="participantsNum" 
+                        [isJoinedByMe]="isJoinedByMe" 
+                    >
+                    </app-join-button>
 
                     @if (me.id === event.createdBy) {
                         <button class="event-card__edit btn-icon">
@@ -51,7 +51,7 @@
                             </div>
                             <span>Edit</span>
                         </button>
-                        <button class="event-card__del btn-icon _ibg" (click)="deleteEvent()">
+                        <button class="event-card__del btn-icon" (click)="deleteEvent()">
                             <div class="_ibg">
                                 <img src="/assets/svg/bin.svg" alt="icon delete">
                             </div>

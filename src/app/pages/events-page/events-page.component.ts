@@ -28,7 +28,8 @@ export class EventsPageComponent {
  //searchFilter = signal('');
 
   me = this.userService.me;
-
+  joinedEventsIds = signal<string[]>([]);
+  
   errorMessage = signal<string | null>(null);
   loading = signal<boolean>(false);
 
@@ -38,6 +39,12 @@ export class EventsPageComponent {
     await this.getUpcomingEvents();
 
     this.filterByRole();
+
+    const currentUser = this.me();
+    if (currentUser) {
+      const joinedEvents = currentUser.joinedEvents;
+      this.joinedEventsIds.set(joinedEvents.map(event => event.id));
+    }
   }
 
   async getPastEvents() {
@@ -60,6 +67,12 @@ export class EventsPageComponent {
   showCreatedByMe() {
     const userId = this.userService.me()!.id;
     this.eventsFiltered = this.events.filter(event => event.createdBy === userId);
+    console.log("my");
+  }
+
+  showJoinedByMe() {
+    const userId = this.userService.me()!.id;
+    this.eventsFiltered = this.events.filter(event => this.joinedEventsIds().includes(event.id));
     console.log("my");
   }
 

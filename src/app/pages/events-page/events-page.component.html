@@ -3,7 +3,8 @@
     <input type="text" (input)="handleInputChange($event)">
     <!-- <button class="menu-btn" (click)="getPastEvents()" >Vergangene</button>
     <button class="menu-btn" (click)="getUpcomingEvents()" >Kommende</button> -->
-    <button class="menu-btn" (click)="showAllEvents()" >Olle:</button>
+    <button class="menu-btn" (click)="showAllEvents()" >Olle: {{events.length}}</button>
+    <button class="menu-btn" (click)="showJoinedByMe()" *ngIf="authService.isUser">Joined: {{joinedEventsIds().length}}</button>
     <button class="menu-btn" (click)="showCreatedByMe()" *ngIf="authService.isEditor">Mei:</button>
 </div>
 
@@ -15,7 +16,8 @@
             [event]=event
             [onDelete]="handleDelete.bind(this)"
             [me]="me"
-            ></app-event-card>
+            [joinedEventsIds]="joinedEventsIds.bind(this)"
+        ></app-event-card>
     }
 </ul>
 
