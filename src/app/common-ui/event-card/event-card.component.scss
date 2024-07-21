@@ -4,6 +4,7 @@
     display: flex;
     position: relative;
 
+
     &.cancelled {
         &:after {
             content: "Abgsagt !";
@@ -28,7 +29,6 @@
             pointer-events: none;
         }
     }
-
 
     h2.event-card__title {
         font-size: 3rem;
@@ -89,6 +89,22 @@
     h2:hover,
     .btn-icon:hover img {
         color: var(--col-hover);
+    }
+
+    .event-joined {
+        width: 2.5rem;
+        height: 2.5rem;
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        border: 3px solid var(--col-green);
+        border-radius: 6px;
+        color: var(--col-light);
+        background: var(--col-green);
+    }
+
+    app-event-participants-number-label {
+        font-size: .8rem;
     }
 }
 

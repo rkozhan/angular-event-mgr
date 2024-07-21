@@ -1,50 +1,55 @@
 :host {
     display: block;
-    
 }
 .event-detail {
     padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
 
         &.cancelled {
                 .event-detail__image:after {
-                    content: "Cancelled ! ! !";
+                    content: "Leider Abgesagt !";
                     width: max-content;
                     font-weight: bold;
                     position: absolute;
                     left: 50%;
                     top: 50%;
                     font-size: 3rem;
-                    color: darkred;
-                    transform: rotate(30deg) translateX(-50%);
+                    color: var(--col-error);
+                    transform:  translateX(-50%) translateY(-50%);
                 }
                 
-                .event-detail__favorite,
+                app-favorite-button,
                 app-join-button {
                     opacity: .5;
                     pointer-events: none;
                 }
             }
+    &__backlink {
+        align-self: flex-start;
+        gap: 0;
+        padding: 0 .8rem 0 0;
+        box-shadow: none;
+        margin-block: -2rem 0rem;
+    }
 
-
-    h1 {
+    &__title {
         font-size: 4rem;
-        text-align: center;
+        text-align: left;
     }
     &__image {
         width: 100%;
         aspect-ratio: 4/3;
     }
 
-    &__main {
+    &__info {
         display: flex;
         flex-direction: column;
         gap: 2rem;
         justify-content: space-between;
+        padding: 0;
         align-items: start;
-        padding: 1rem 1.5rem;
         overflow: hidden;
     }
 
@@ -70,4 +75,92 @@
         color: var(--col-hover);
     }
 
+    .event-joined {
+        width: 2.5rem;
+        height: 2.5rem;
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        border: 3px solid var(--col-green);
+        border-radius: 6px;
+        color: var(--col-light);
+        background: var(--col-green);
+    }
+
+        app-event-participants-number-label {
+            font-size: 1rem;
+        }
+
+}
+@media (min-width: 480px) {
+    .event-detail {
+        &__info, &__descr {
+            font-size: 2.5rem;
+        }
+    }
+}
+
+@media (min-width: 640px) {
+    .event-detail {
+        &.cancelled {
+            .event-detail__image:after {
+            font-size: 4rem;
+            }
+        }
+
+        
+        h1 {
+            font-size: 4rem;
+        }
+        &__main {
+            font-size: 3rem;
+        }
+    }
+       
+}
+
+@media (min-width: 768px) {
+    .event-detail {
+        &.cancelled {
+            .event-detail__image:after {
+                font-size: 4rem;
+            }
+        }
+
+        &__title {
+            font-size: 4rem;
+        }
+
+        &__info {
+            font-size: 3rem;
+        }
+    }
+}
+
+@media (min-width: 815px) {
+    .event-detail {
+        flex-direction: row;
+        flex-wrap: wrap;
+        &__backlink, &__title {
+            flex-basis: 100%;
+        }
+        &__image {
+            flex-basis: 48%;
+            order: 4;
+        }
+        &__info {
+            flex-basis: 48%;
+            order: 3;
+            justify-content: flex-start;
+        }
+
+        &__dash {
+            order: 5;
+            flex-basis: 100%;
+        }
+        &__descr {
+            order: 6;
+            flex-basis: 100%;
+        }
+    }
 }

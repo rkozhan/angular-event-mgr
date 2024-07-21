@@ -18,22 +18,21 @@ import { CommonModule } from '@angular/common';
     .event__members {
       position: absolute;
       display: flex;
-      gap: 1rem;
-      top: 1rem;
-      left: 1rem;
-      height: 3rem;
-      padding: .6rem 1rem;
+      gap: 1em;
+      top: 1em;
+      left: 1em;
+      height: 3em;
+      padding: .6em 1em;
       background-color: var(--col-light);
       box-shadow: inset 0 0 0 3px var(--col-primary);
       color: var(--col-primary);
-      backdrop-filter: blur(5px);
       border-radius: 6px;
       ._ibg {
-        width: 3rem;
+        width: 3em;
         aspect-ratio: 1/1;
       }
       &_label {
-        font-size: 2.5rem;
+        font-size: 2.5em;
         font-weight: bold;
       }
     }

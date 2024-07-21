@@ -58,6 +58,7 @@
     font-size: 2rem;
     padding: 1rem 2rem;
     color: var(--col-light);
+    text-wrap: nowrap;
 
     &:hover {
         color: var(--col-primary);
@@ -74,7 +75,7 @@
     }
 }
 
-@media (min-width: 520px) {
+@media (min-width: 640px) {
     .event__menu {
         flex-wrap: nowrap;
         align-items: stretch;
@@ -86,7 +87,7 @@
 
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
     .event__list {
             padding-inline: 0;
             display: grid;

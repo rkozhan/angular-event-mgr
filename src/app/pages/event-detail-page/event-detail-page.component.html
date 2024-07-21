@@ -1,66 +1,84 @@
 @if (event) {
 <div class="event-detail" [class.cancelled]="isCancelled()">
-    <a class="event-detail_backlink" [routerLink]="['/']">All Events</a>
 
-    <h1>{{ event.title }}</h1>
+    <button  class="event-detail__backlink btn-icon" [routerLink]="['/']">
+        <div class="_ibg">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+            </svg>
+        </div>
+        <span>Events</span>
+    </button>
 
-    @if (isJoinedByMe()) {
-        <div>isJoined</div>
-    }
+    <h1 class="event-detail__title">{{ event.title }}</h1>
 
     <div class="event-detail__image _ibg">
         @if (event.imgUrls && event.imgUrls[0]) {
         <img [src]="event.imgUrls[0]" [alt]="event.title" class="event-detail__avatar">
         } @else {
-        <img src="https://picsum.photos/id/158/200/300?blur=1" alt="default event picture" class="event-detail__avatar">
+        <img src="/assets/imgs/image-placeholder" alt="default event picture" class="event-detail__avatar">
         }
+
+        <div class="event-joined _ibg" *ngIf="isJoinedByMe()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                <path
+                    d="M480-40 192-256q-15-11-23.5-28t-8.5-36v-480q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v480q0 19-8.5 36T768-256L480-40Zm0-100 240-180v-480H240v480l240 180Zm-42-220 226-226-56-58-170 170-84-84-58 56 142 142Zm42-440H240h480-240Z" />
+            </svg>
+        </div>
 
 
         <app-event-participants-number-label [participantsNum]="participantsNum()"></app-event-participants-number-label>
     </div>
 
-    <div class="event-detail__main">
-        <p>{{ event.description }}</p>
-        <div class="event-detail__location _before-icon">{{event.location}}</div>
-        <div class="event-detail__date _before-icon">{{event.date}}</div>
-        <div class="event-detail__time _before-icon">{{event.time.slice(0, 5)}} Uhr</div>
+    <div class="event-detail__dash">
+        @if (me(); as me) {
 
-        <div class="event-detail__dash">
+        <app-favorite-button
+            *ngIf="authService.isUser"
+            [eventId]="event.id"
+            [userId]="me.id"
+        >
+        </app-favorite-button>
 
-
-            @if (me(); as me) {
-
-            <app-favorite-button
-                *ngIf="authService.isUser"
-                [eventId]="event.id"
-                [userId]="me.id"
-            >
-            </app-favorite-button>
-
-            <app-join-button
-                *ngIf="authService.isUser"
-                [eventId]="event.id"
-                [userId]="me.id"
-                [username]="me.username"
-                [participantsNum]="participantsNum" 
-                [isJoinedByMe]="isJoinedByMe" 
-            >
-            </app-join-button>
+        <app-join-button
+            *ngIf="authService.isUser"
+            [eventId]="event.id"
+            [userId]="me.id"
+            [username]="me.username"
+            [participantsNum]="participantsNum" 
+            [isJoinedByMe]="isJoinedByMe" 
+        >
+        </app-join-button>
 
 
-            @if (me.id === event.createdBy) {
+        @if (me.id === event.createdBy) {
 
-            <button class="event-detail__edit btn-icon _ibg">
-                <img src="/assets/svg/edit.svg" alt="icon edit">
+            <button class="event-detail__edit btn-icon">
+                <div class="_ibg">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                        <path
+                            d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+                    </svg>
+                </div>
+                <span>Edit</span>
             </button>
 
             <app-delete-event-button [eventId]="event.id"></app-delete-event-button>
 
             <app-toogle-event-cancelled [eventId]="event.id" [isCancelled]="isCancelled" ></app-toogle-event-cancelled>
-            }
-            
-            }
-        </div>
+        }
+        
+        }
+    </div >
+
+    
+    <div class="event-detail__info">
+        <div class="event-detail__location _before-icon">{{event.location}}</div>
+        <div class="event-detail__date _before-icon">{{event.date}}</div>
+        <div class="event-detail__time _before-icon">{{event.time.slice(0, 5)}} Uhr</div>
+    </div>
+    
+    <p class="event-detail__descr">{{ event.description }}</p>
 
         @if (me(); as me) {
 
@@ -79,6 +97,5 @@
             }
         }
 
-    </div>
 </div>
 }

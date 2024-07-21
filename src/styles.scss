@@ -202,12 +202,13 @@ a {
     
     &:hover,
     &:focus {
-        background-color: var(--col-hover-l);
+        background-color: var(--col-primary);
+        color: var(--col-light);
     }       
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 815px) {
 
 
     main {

@@ -1,5 +1,5 @@
 @if (event) {
-    <li class="event-card" [class.cancelled]="isCancelled()">
+    <li class="event-card" [class.cancelled]="isCancelled()" >
 
         <a [routerLink]="['/events', event.id]" class="event-card__image _ibg">
             @if (event.imgUrls && event.imgUrls[0]) {
@@ -9,11 +9,18 @@
                 class="event-card__avatar">
             } @else {
                 <img
-                src="https://picsum.photos/id/158/200/300?blur=1"
+                src="/assets/imgs/image-placeholder"
                 alt="default event picture"
                 class="event-card__avatar">
             }
 
+                <div class="event-joined _ibg" *ngIf="isJoinedByMe()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                        <path
+                            d="M480-40 192-256q-15-11-23.5-28t-8.5-36v-480q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v480q0 19-8.5 36T768-256L480-40Zm0-100 240-180v-480H240v480l240 180Zm-42-220 226-226-56-58-170 170-84-84-58 56 142 142Zm42-440H240h480-240Z" />
+                    </svg>
+                </div>
+            
             <app-event-participants-number-label [participantsNum]="0"></app-event-participants-number-label>
         </a>
 
@@ -47,13 +54,19 @@
                     @if (me.id === event.createdBy) {
                         <button class="event-card__edit btn-icon">
                             <div class="_ibg">
-                                <img src="/assets/svg/edit.svg" alt="icon edit">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                                    <path
+                                        d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+                                </svg>
                             </div>
                             <span>Edit</span>
                         </button>
                         <button class="event-card__del btn-icon" (click)="deleteEvent()">
                             <div class="_ibg">
-                                <img src="/assets/svg/bin.svg" alt="icon delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                                    <path
+                                        d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                </svg>
                             </div>
                             <span>Delete</span>
                         </button>
