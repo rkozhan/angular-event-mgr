@@ -5,13 +5,13 @@ import { Router, UrlTree } from "@angular/router"
 export const canActivateAuth = () => {
     const isLoggedIn = inject(AuthService).isAuth
 
-    console.log("canActivate: isLoggedIn: " +isLoggedIn);
+    //console.log("canActivate: isLoggedIn: " +isLoggedIn);
 
     if (isLoggedIn) {
         return true
     }
 
-    return inject(Router).createUrlTree(['/login'])
+    return inject(Router).createUrlTree(['/welcome'])
 }
 
 export const canActivateEditorView = () => {

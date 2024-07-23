@@ -4,8 +4,8 @@
     <!-- <button class="menu-btn" (click)="getPastEvents()" >Vergangene</button>
     <button class="menu-btn" (click)="getUpcomingEvents()" >Kommende</button> -->
     <button class="menu-btn" (click)="showAllEvents()" >Alle: {{events.length}}</button>
-    <button class="menu-btn" (click)="showJoinedByMe()" *ngIf="authService.isUser">Dabei: {{joinedEventsIds().length}}</button>
-    <button class="menu-btn" (click)="showCreatedByMe()" *ngIf="authService.isEditor">Mei:</button>
+    <button class="menu-btn" (click)="showJoinedByMe()" *ngIf="authService.isUser">Bin dabei: {{joinedEventsIds().length}}</button>
+    <button class="menu-btn" (click)="showCreatedByMe()" *ngIf="authService.isEditor">Meine:</button>
 </div>
 
 <ul

@@ -53,7 +53,6 @@ export class LoginPageComponent {
       .subscribe(res => {
         this.loading.set(false)
         this.router.navigate([''])
-        console.log(res);
         
       })
       //TODO form typization 

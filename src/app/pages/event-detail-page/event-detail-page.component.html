@@ -60,7 +60,7 @@
                             d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
                     </svg>
                 </div>
-                <span>Edit</span>
+                <span>Bearbeiten</span>
             </button>
 
             <app-delete-event-button [eventId]="event.id"></app-delete-event-button>
@@ -77,22 +77,29 @@
         <div class="event-detail__date _before-icon">{{event.date}}</div>
         <div class="event-detail__time _before-icon">{{event.time.slice(0, 5)}} Uhr</div>
     </div>
-    
-    <p class="event-detail__descr">{{ event.description }}</p>
+
+
+    <div class="event-detail__descr">
+        <h2>Beschreibung:</h2>
+        <p>
+            {{ event.description }}
+        </p>
+    </div>
 
         @if (me(); as me) {
 
             @if (me.id === event.createdBy) {
                 <div class="event-detail__participants">
+
+                    @if (participants(); as participants) {
+                    <h2 class="event-detail__participants_num">Teilnamers</h2>
                     <ul>
-                            @if (participants(); as participants) {
 
-                                @for (participant of participants; track participant.id) {
-                                    <li>{{participant.username}}</li>
-                                }
-
-                            }
+                    @for (participant of participants; track participant.id) {
+                        <li>{{participant.username}}</li>
+                    }
                     </ul>
+                    }
                 </div>
             }
         }

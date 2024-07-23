@@ -1,39 +1,39 @@
 
 <form class="add-event-form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <h1 class="f-h1">Add new event:</h1>
+    <h1 class="f-h1">Neues Event hinzufügen:</h1>
     
             <label class="em-control-label f-t">
-                Title:
-                <input formControlName="title" class="em-input" type="text" placeholder="title" />
+                Titel:
+                <input formControlName="title" class="em-input" type="text" placeholder="Titel" />
             </label>
             
             <label class="em-control-label f-cat">
-                Category:
-                <input formControlName="category" class="em-input" type="text" placeholder="category" required />
+                Kategorie:
+                <input formControlName="category" class="em-input" type="text" placeholder="Kategorie" required />
             </label>
 
             
             <label class="em-control-label f-date">
-                Date:
+                Datum:
                 <input formControlName="date" class="em-input" type="date" min="{{ today | date: 'yyyy-MM-dd' }}" required />
             </label>
             
             <label class="em-control-label f-time">
-                Time:
+                Zeit:
                 <input formControlName="time" class="em-input" type="time" />
             </label>
             
             <label class="em-control-label f-desc">
-                Description:
-                <textarea formControlName="description" class="em-input textarea" placeholder="description" required maxlength="255"></textarea>
+                Beschreibung:
+                <textarea formControlName="description" class="em-input textarea" placeholder="Beschreibung" required maxlength="255"></textarea>
             </label>
                         
             <label class="em-control-label f-loc">
-                Location:
-                <input formControlName="location" class="em-input" type="text" placeholder="location" required />
+                Ort:
+                <input formControlName="location" class="em-input" type="text" placeholder="Ort" required />
             </label>
-                        <button class="submit-btn f-btn" type="submit">Add event</button>
+                        <button class="submit-btn f-btn" type="submit">Event hinzufügen</button>
 
 
 

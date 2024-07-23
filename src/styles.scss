@@ -9,8 +9,8 @@
 :root {
     --col-black: black;
     --col-dark : #721c24;
-    --col-light: #f8d7da;
-    --col-primary: darkred;
+    --col-light: #f2e9e4;
+    --col-primary: #f35b04;
     --col-hover: #99424b;
     --col-hover-l: rgb(253, 194, 194);
     --col-error: red;
@@ -106,7 +106,7 @@ form {
         margin-top: 2rem;
         font-family: title;
         font-size: 2rem;
-        background-color: var(--col-hover);
+        background-color: var(--col-primary);
         border-radius: 4em 1.2em 4em 2em;
         color: var(--col-light);
 
@@ -168,17 +168,17 @@ a {
 
 ._before-icon {
     position: relative; 
-    padding-left: 3rem;
+    margin-left: 4rem;
 
     &::before {
         content: '';
         display: inline-block;
         width: 2.5rem;
-        height: 2.5rem;
+        aspect-ratio: 1/1;
         background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
-        left: 0;
+        left: -4rem;
         top: 50%;
         transform: translateY(-50%);
     }

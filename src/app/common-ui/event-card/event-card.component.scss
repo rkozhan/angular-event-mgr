@@ -7,7 +7,7 @@
 
     &.cancelled {
         &:after {
-            content: "Abgsagt !";
+            content: "Abgsogt!";
             z-index: 1;
             font-weight: bold;
             position: absolute;
@@ -108,6 +108,17 @@
     }
 }
 
+
+@media (min-width: 560px) {
+    .event-card__edit span::after {
+        content: "Bearbeiten"
+    }
+    .event-card__del span::after {
+        content: "Löschen"
+    }
+
+
+}
 
 
 @media (min-width: 1320px) {

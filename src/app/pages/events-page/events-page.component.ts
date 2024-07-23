@@ -61,30 +61,25 @@ export class EventsPageComponent {
   
   showAllEvents() {
     this.eventsFiltered = this.events;
-    console.log("all");
   }
 
   showCreatedByMe() {
     const userId = this.userService.me()!.id;
     this.eventsFiltered = this.events.filter(event => event.createdBy === userId);
-    console.log("my");
   }
 
   showJoinedByMe() {
     const userId = this.userService.me()!.id;
     this.eventsFiltered = this.events.filter(event => this.joinedEventsIds().includes(event.id));
-    console.log("my");
   }
 
   filterByRole() {
     if (this.authService.isUser) {
       this.eventsFiltered = this.events;
-      console.log("all");
     }
     if (this.authService.isEditor) {
       const userId = this.userService.me()!.id;
       this.eventsFiltered = this.events.filter(event => event.createdBy === userId);
-      console.log("my");
     }
     this.loading.set(false);
   }

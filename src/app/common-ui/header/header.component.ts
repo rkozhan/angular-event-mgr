@@ -26,11 +26,9 @@ export class HeaderComponent {
 
   ngOnInit() {
     firstValueFrom(this.userService.getMe())
-    console.log(this.me);
   }
   
   logout() {
-    console.log("logout");
     
     this.authService.logout();
   }

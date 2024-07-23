@@ -13,9 +13,9 @@
  
         <!-- <a class="header__nav_link" [routerLink]="['/me']">Mein Profil</a> -->
 
-        <a class="header__nav_link" [routerLink]="['/events/add']" *ngIf="authService.isEditor">Neues Event hinzufügn</a>
+        <a class="header__nav_link" [routerLink]="['/events/add']" *ngIf="authService.isEditor">Neues Event</a>
         
-        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">All Benutzer</a>
+        <a class="header__nav_link" [routerLink]="['/users']" *ngIf="authService.isAdmin">Alle Benutzer</a>
 
         <!-- <a class="header__nav_link" href="/#">Über uns:</a>
 
@@ -24,8 +24,7 @@
         <a class="header__nav_link" href="/#">Impressum</a> -->
 
 
-        
-        <button class="header__nav_btn" *ngIf="authService.isAuth" (click)="logout()">Logout</button>
+        <button class="header__nav_btn" *ngIf="authService.isAuth" (click)="logout()">Abmelden</button>
 
     </nav>
 
@@ -36,6 +35,4 @@
         </button>
 
 
-
-    
 </header>

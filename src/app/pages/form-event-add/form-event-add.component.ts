@@ -43,8 +43,6 @@ export class FormEventAddComponent implements OnInit {
     await firstValueFrom(this.userService.getMe());
     if (this.me()) {
       this.createdBy = this.me()?.id;
-      
-      console.log("init");
     }
   }
 
@@ -74,15 +72,15 @@ export class FormEventAddComponent implements OnInit {
       this.eventService.addEvent(formValue)
         .subscribe({
           next: (resp) => {
-            console.log('Event added successfully:', resp);
+            console.log('Event erfolgreich hinzugefügt:', resp);
             this.loading.set(false);
             this.form.reset;
             this.router.navigate([`../events/${resp.id}`]);
           },
           error: (error) => {
-            console.error('Error adding event:', error);
+            console.error('Fehler beim Hinzufügen des Events:', error);
             this.loading.set(false);
-            this.errorMessage.set('Failed to add event. Please try again.');
+            this.errorMessage.set('Das Hinzufügen des Events ist fehlgeschlagen. Bitte versuchen Sie es erneut.');
           }
         });
     }

@@ -60,6 +60,8 @@ export class AuthService {
       payload
     ).pipe(
       tap(value => {
+        console.log(value);
+        
         this.saveTokens(value)
         this.saveRoles
       })
@@ -109,7 +111,7 @@ export class AuthService {
 
   logout() {
     this.cookieService.delete('token')
-    this.cookieService.delete('refreshToken')
+    //this.cookieService.delete('refreshToken')
     this.cookieService.delete('roles')
     this.token = null
     //this.refreshToken = null
@@ -122,7 +124,6 @@ export class AuthService {
     //this.refreshToken = resp.refresh
     this.cookieService.set('token', this.token)
     //this.cookieService.set('refreshToken', this.refreshToken)
-    console.log(resp.message)
   }
   
   saveRoles () {
