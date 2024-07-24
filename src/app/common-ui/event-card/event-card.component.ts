@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { EventParticipantsNumberLabelComponent } from '../event-participants-number-label/event-participants-number-label.component';
 import { FavoriteButtonComponent } from '../buttons/favorite-button.component';
 import { JoinButtonComponent } from '../buttons/join-button.component';
+import { EditButtonComponent } from '../buttons/edit-button.component';
 
 @Component({
   selector: 'app-event-card',
@@ -22,7 +23,8 @@ import { JoinButtonComponent } from '../buttons/join-button.component';
     CommonModule,
     EventParticipantsNumberLabelComponent,
     FavoriteButtonComponent,
-    JoinButtonComponent
+    JoinButtonComponent,
+    EditButtonComponent
   ],
   templateUrl: './event-card.component.html',
   styleUrl: './event-card.component.scss'

@@ -109,10 +109,7 @@
 }
 
 
-@media (min-width: 560px) {
-    .event-card__edit span::after {
-        content: "Bearbeiten"
-    }
+@media (min-width: 575px) {
     .event-card__del span::after {
         content: "Löschen"
     }

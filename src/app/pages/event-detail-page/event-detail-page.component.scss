@@ -80,6 +80,14 @@
     }
 
     &__participants {
+        ul {
+            font-size: 1.8rem;
+            padding-block: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+        }
     }
 
     .event-joined {

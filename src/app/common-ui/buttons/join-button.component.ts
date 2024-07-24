@@ -17,14 +17,14 @@ interface Participant {
       <div class="_ibg">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M680-80v-120H560v-80h120v-120h80v120h120v80H760v120h-80Zm-480-80q-33 0-56.5-23.5T120-240v-480q0-33 23.5-56.5T200-800h40v-80h80v80h240v-80h80v80h40q33 0 56.5 23.5T760-720v244q-20-3-40-3t-40 3v-84H200v320h280q0 20 3 40t11 40H200Zm0-480h480v-80H200v80Zm0 0v-80 80Z"/></svg>
       </div>
-      <span>Anmelden</span>
+      <span></span>
     </button>
 
     <button *ngIf="isJoinedByMe()" class="event-detail__unjoin btn-icon _ibg" (click)="unregisterForEvent()">
       <div class="_ibg">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m388-212-56-56 92-92-92-92 56-56 92 92 92-92 56 56-92 92 92 92-56 56-92-92-92 92ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>
       </div>
-      <span>Abmelden</span>
+      <span></span>
     </button>
   `,
   styles: [`
@@ -34,7 +34,11 @@ interface Participant {
       &:hover {
         background-color: var(--col-green);
         color: var(--col-light);
-        
+      }
+      @media (min-width: 575px) {
+        span:after {
+          content:"Anmelden";
+        }
       }
     }
     .event-detail__unjoin {
@@ -43,6 +47,11 @@ interface Participant {
       &:hover {
         background-color: var(--col-red);
         color: var(--col-light);
+      }
+      @media (min-width: 575px) {
+        span:after {
+          content:"Abmelden";
+        }
       }
     }
   `]

@@ -1,12 +1,11 @@
 :host {
     display: flex;
-    border-radius: 1rem;
     gap: 1rem;
 
     
     .profile-card {
         &__avatar {
-            width: 5em;
+            width: 4.5em;
             aspect-ratio: 1/1;
             border-radius: 50%;
             overflow: hidden;
@@ -17,7 +16,16 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: .8rem;
+            gap: .8em;
+        }
+
+        &__username {
+            font-size: 1.2em;
+            font-family: title;
+            color: var(--col-primary);
+            &:hover {
+                color: var(--col-hover);
+            }
         }
 
     }

@@ -1,16 +1,19 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { EventDetailedInterface, Participant } from '../../data/interfaces/event-detailed.interface';
+import { EventDetailedInterface } from '../../data/interfaces/event-detailed.interface';
+import { UserInterface } from '../../data/interfaces/user.interface';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from '../../data/services/user.service';
 import { EventService } from '../../data/services/event.service';
 import { JoinButtonComponent } from '../../common-ui/buttons/join-button.component';
 import { FavoriteButtonComponent } from '../../common-ui/buttons/favorite-button.component';
 import { DeleteEventButtonComponent } from '../../common-ui/buttons/delete-event-button.component';
+import { EditButtonComponent } from '../../common-ui/buttons/edit-button.component';
 import { ToogleEventCancelledComponent } from '../../common-ui/buttons/toogle-event-cancelled.component';
 import { CommonModule } from '@angular/common';
 import { EventParticipantsNumberLabelComponent } from '../../common-ui/event-participants-number-label/event-participants-number-label.component';
+import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
 
 
 @Component({
@@ -20,9 +23,11 @@ import { EventParticipantsNumberLabelComponent } from '../../common-ui/event-par
     JoinButtonComponent,
     DeleteEventButtonComponent,
     FavoriteButtonComponent,
+    EditButtonComponent,
     CommonModule,
     ToogleEventCancelledComponent,
-    EventParticipantsNumberLabelComponent
+    EventParticipantsNumberLabelComponent,
+    ProfileHeaderComponent
   ],
   templateUrl: './event-detail-page.component.html',
   styleUrls: ['./event-detail-page.component.scss']
@@ -37,7 +42,7 @@ export class EventDetailPageComponent implements OnInit {
   event: EventDetailedInterface | null = null;
 
   me = this.userService.me;
-  participants = signal<Participant[]>([]);
+  participants = signal<UserInterface[]>([]);
   participantsNum = signal(0);
   isJoinedByMe = signal(false);
 
@@ -54,8 +59,6 @@ export class EventDetailPageComponent implements OnInit {
       const currentUser = this.me();
 
       if (currentUser) {
-        console.log(currentUser.joinedEvents);
-
         const joinedEvents = currentUser.joinedEvents;
         const joinedEventsIds = joinedEvents.map(event => event.id);
         this.isJoinedByMe.set(joinedEventsIds.includes(this.eventId));
@@ -64,6 +67,8 @@ export class EventDetailPageComponent implements OnInit {
 
     if (this.event) {
       this.participants.set(this.event.participants);
+      console.dir(this.participants);
+      
       this.participantsNum.set(this.participants().length);
 
       this.isCancelled.set(this.event.cancelled);

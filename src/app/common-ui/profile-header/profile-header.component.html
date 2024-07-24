@@ -8,8 +8,7 @@
 
     </div>
     <div class="profile-card__main">
-        <h4 class="profile-card__username">{{profile.username}}</h4>
+        <a class="profile-card__username" [routerLink]="['/users', profile.id]">{{profile.username}}</a>
         <div class="profile-card__email">{{profile.email}}</div>
-        <a class="profile-card__link" [routerLink]="['/users', profile.id]">Details</a>
     </div>
 }
