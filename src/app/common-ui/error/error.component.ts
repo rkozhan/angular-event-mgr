@@ -13,9 +13,15 @@ import { CommonModule } from '@angular/common';
   styles: [`
     :host {
       margin:auto;
+      
+      
     }
     .error {
-      color: red;
+      padding: 1rem;
+      background-color: var(--col-error);
+      color: var(--col-light);
+      font-size: 2rem;
+      text-wrap:wrap;
     }
   `]
 })
