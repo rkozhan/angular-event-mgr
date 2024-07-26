@@ -13,8 +13,6 @@ import { CommonModule } from '@angular/common';
   styles: [`
     :host {
       margin:auto;
-      
-      
     }
     .error {
       padding: 1rem;
