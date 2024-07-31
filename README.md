@@ -16,6 +16,7 @@ This project is an Event Management Platform built with Angular. It provides a u
 
 ## Planned Features
 
+- **Styling**: (Angular Material, Primeng)
 - **Favorite Events**: Ability to mark events as favorites for quick access.
 - **Password Recovery**: A feature to allow users to reset their passwords if forgotten.
 - **Image Uploads**: Support for adding images to events for better visual representation.
