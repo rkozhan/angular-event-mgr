@@ -3,13 +3,14 @@ import { Injectable, inject, signal } from '@angular/core';
 import { UserInterface } from '../interfaces/user.interface';
 import { catchError, tap, throwError } from 'rxjs';
 import { UserDetailedInterface } from '../interfaces/user-detailed.interface';
+import { environment } from '../../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   http = inject(HttpClient)
-  baseApiUrl = "http://localhost:5454/api/v1/"
+  baseApiUrl = environment.baseApiUrl
 
   me = signal<UserDetailedInterface | null>(null)
 

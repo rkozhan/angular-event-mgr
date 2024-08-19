@@ -5,6 +5,7 @@ import { catchError, tap, throwError } from 'rxjs';
 import { TokenResponse } from './auth.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from "jwt-decode";
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   cookieService = inject(CookieService)
   router = inject(Router)
 
-  baseApiUrl = 'http://localhost:5454/auth/'
+  baseApiUrl = `${environment.baseApiUrl}auth/`
 
   token: string | null = null
  // refreshToken: string | null = null  //TODO in auth.interface

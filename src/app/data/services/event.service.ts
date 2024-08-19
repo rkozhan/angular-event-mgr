@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { EventInterface } from '../interfaces/event.interface';
 import { EventDetailedInterface } from '../interfaces/event-detailed.interface';
 import { EventAddRequestInterface } from '../interfaces/event-add-request.interface';
+import { environment } from '../../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { EventAddRequestInterface } from '../interfaces/event-add-request.interf
 export class EventService {
   http = inject(HttpClient)
   userService = inject(UserService)
-  baseApiUrl = "http://localhost:5454/api/v1/"
+  baseApiUrl = environment.baseApiUrl
 
   me = this.userService.getMe
 
