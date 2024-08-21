@@ -22,6 +22,18 @@ This project is an Event Management Platform built with Angular. It provides a u
 - **Image Uploads**: Support for adding images to events for better visual representation.
 - **Email Verification**: A feature requiring email confirmation when creating an editor account, to ensure the validity and security of the account.
 
+## Live Demo: [Event Manager Application live on render.com](https://angular-event-mgr.onrender.com)
+
+## Test User Credentials
+
+- **Email:** `user@mail.com`
+- **Password:** `user`
+
+## Test Editor Credentials
+
+- **Email:** `manager@mail.com`
+- **Password:** `manager`
+
 ## Technologies Used
 
 - **Frontend**: Angular, TypeScript, RxJS, SCSS
